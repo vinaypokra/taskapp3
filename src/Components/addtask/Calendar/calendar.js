@@ -12,17 +12,13 @@ export default function Cal() {
 
   return (
     <>
-      <Calendar
-        value={dateState}
-        onChange={changeDate}
-        onClickDay={props.handleClickOpen}
-      />
-      <Grid item>
+      <Calendar value={dateState} onChange={changeDate} />
+      {/*   <Grid item>
         <p style={{ margin: "30px 100px" }}>
           Current selected date is{" "}
           <b>{moment(dateState).format("MMMM Do YYYY")}</b>
         </p>
-      </Grid>
+      </Grid> */}
     </>
   );
 }
