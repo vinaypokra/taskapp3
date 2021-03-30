@@ -149,6 +149,7 @@ export default function MainDrawer(props) {
               </ListItem>
             </Link>
           ))}
+          <div>{props.signout}</div>
         </List>
         <Divider />
       </Drawer>
