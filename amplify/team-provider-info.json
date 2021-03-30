@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-timelinesheet-dev-43220-authRole",
+      "UnauthRoleArn": "arn:aws:iam::437092866989:role/amplify-timelinesheet-dev-43220-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::437092866989:role/amplify-timelinesheet-dev-43220-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-timelinesheet-dev-43220-deployment",
+      "UnauthRoleName": "amplify-timelinesheet-dev-43220-unauthRole",
+      "StackName": "amplify-timelinesheet-dev-43220",
+      "StackId": "arn:aws:cloudformation:ap-south-1:437092866989:stack/amplify-timelinesheet-dev-43220/ff711bd0-91ab-11eb-b171-02f8c3bcd3d8",
+      "AmplifyAppId": "d2m5tlnkgb9yyd"
+    },
+    "categories": {
+      "auth": {
+        "timelinesheet512d65f5": {}
+      }
+    }
+  }
+}

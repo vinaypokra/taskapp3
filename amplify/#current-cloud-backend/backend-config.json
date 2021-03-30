@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "timelinesheet512d65f5": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
