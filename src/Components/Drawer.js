@@ -135,6 +135,7 @@ export default function MainDrawer(props) {
           </IconButton>
         </div>
         <Divider />
+
         <List>
           {[
             ["DashBoard", "/dashboard"],
@@ -152,6 +153,7 @@ export default function MainDrawer(props) {
         </List>
         <Divider />
         <div style={{ position: "absolute", bottom: "0px", width: "100%" }}>
+          <Typography variant="p">{props.currentUser}</Typography>{" "}
           {props.signout}
         </div>
       </Drawer>

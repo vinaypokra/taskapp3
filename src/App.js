@@ -23,7 +23,10 @@ function App() {
   return authState === AuthState.SignedIn && user ? (
     <>
       <Routers>
-        <Navigation signout={<AmplifySignOut />}>
+        <Navigation
+          signout={<AmplifySignOut />}
+          currentUser={user.attributes.email}
+        >
           <Route path="/taskpage">
             <TaskPage />
           </Route>
