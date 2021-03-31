@@ -1,7 +1,7 @@
 import React from "react";
 import TaskPage from "./Components/addtask/";
 import Dashboard from "./Components/dashboard";
-import { BrowserRouter as Routers, Route, Link } from "react-router-dom";
+import { BrowserRouter as Routers, Route } from "react-router-dom";
 import Navigation from "./Components/Drawer";
 import { AmplifyAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
