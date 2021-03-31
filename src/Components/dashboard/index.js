@@ -112,6 +112,37 @@ export default function Dashboard() {
                 </Select>
               </FormControl>
             </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="Employee"
+                label="Employee ID"
+                name="Employee ID"
+                autoComplete="Employee ID"
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Upload Your ID"
+                name="ID"
+                type="file"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                label="Upload Your Resume"
+                name="upload-resume"
+                type="file"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </Grid>
             <Button
               variant="contained"
               color="primary"
