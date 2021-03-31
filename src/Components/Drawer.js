@@ -149,9 +149,11 @@ export default function MainDrawer(props) {
               </ListItem>
             </Link>
           ))}
-          <div>{props.signout}</div>
         </List>
         <Divider />
+        <div style={{ position: "absolute", bottom: "0px", width: "100%" }}>
+          {props.signout}
+        </div>
       </Drawer>
       <main
         className={clsx(classes.content, {
