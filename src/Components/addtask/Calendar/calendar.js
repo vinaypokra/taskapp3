@@ -4,15 +4,19 @@ import "./Cal.css";
 import moment from "moment";
 import { Grid } from "@material-ui/core";
 
-export default function Cal() {
+export default function Cal({ handleClickOpen }) {
   const [dateState, setDateState] = useState(new Date());
+
   const changeDate = (e) => {
     setDateState(e);
   };
-
   return (
     <>
-      <Calendar value={dateState} onChange={changeDate} />
+      <Calendar
+        value={dateState}
+        onChange={changeDate}
+        onClickDay={handleClickOpen}
+      />
       {/*   <Grid item>
         <p style={{ margin: "30px 100px" }}>
           Current selected date is{" "}
