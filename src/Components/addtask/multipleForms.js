@@ -63,58 +63,84 @@ const MultipleForms = () => {
 
   const hello = (e) => {
     e.preventDefault();
-    taskData = [...inputfields];
+
+    inputfields.map((value) => {
+      taskData.push({
+        id: moment(newDate).format("YYYYMMDDHHMMSS"),
+        taskAddDate: date,
+        taskName: value.Name,
+        taskDescription: value.Description,
+        taskTo: value.Assigned.split(" "),
+        taskDeadLine: value.Deadline,
+      });
+    });
     console.log(taskData);
+    setInputfields(null);
   };
   const classes = useStyles();
   return (
     <>
-      <form className={classes.root} autoComplete="off" onSubmit={hello}>
-        {inputfields.map((inputfield, index) => (
-          <Grid container direction="row" xs={4}>
-            <Typography color="primary">Task {index + 1}</Typography>
-            <Grid xs={11} container item direction="column">
-              {formData.map((formfield) => (
-                <Grid item>
-                  <TextField
-                    id={formfield.fieldName}
-                    name={formfield.fieldName}
-                    autoFocus
-                    rows={formfield.row}
-                    margin="dense"
-                    variant="outlined"
-                    defaultValue={formfield.default}
-                    label={formfield.fieldName}
-                    type={formfield.type}
-                    onChange={(e) => handleOnChange(e, index)}
-                    required
-                  />
-                </Grid>
-              ))}
-            </Grid>
-            <Grid item xs={1}>
-              <Button onClick={handleAddNewfields}>
-                <Add color="primary" />
-              </Button>
-              {index !== 0 ? (
-                <Button onClick={() => handleRemoveNewfields(index)}>
-                  <Remove color="error" />
+      {inputfields !== null ? (
+        <form className={classes.root} autoComplete="off" onSubmit={hello}>
+          {inputfields.map((inputfield, index) => (
+            <Grid container direction="row" xs={4}>
+              <Typography color="primary">Task {index + 1}</Typography>
+              <Grid xs={11} container item direction="column">
+                {formData.map((formfield) => (
+                  <Grid item>
+                    <TextField
+                      id={formfield.fieldName}
+                      name={formfield.fieldName}
+                      autoFocus
+                      rows={formfield.row}
+                      margin="dense"
+                      variant="outlined"
+                      defaultValue={formfield.default}
+                      label={formfield.fieldName}
+                      type={formfield.type}
+                      onChange={(e) => handleOnChange(e, index)}
+                      required
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+              <Grid item xs={1}>
+                <Button onClick={handleAddNewfields}>
+                  <Add color="primary" />
                 </Button>
-              ) : null}
+                {index !== 0 ? (
+                  <Button onClick={() => handleRemoveNewfields(index)}>
+                    <Remove color="error" />
+                  </Button>
+                ) : null}
+              </Grid>
             </Grid>
-          </Grid>
-        ))}
+          ))}
 
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          style={{ margin: "8px" }}
-        >
-          Submit
-          <Send style={{ marginLeft: "5px" }} />
-        </Button>
-      </form>
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            style={{ margin: "8px" }}
+          >
+            Submit
+            <Send style={{ marginLeft: "5px" }} />
+          </Button>
+        </form>
+      ) : (
+        <>
+          <Typography variant="h5">Task Send...</Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ margin: "8px" }}
+            onClick={handleAddNewfields}
+          >
+            AddNewTask
+            <Add style={{ marginLeft: "5px" }} />
+          </Button>
+        </>
+      )}
     </>
   );
 };
