@@ -28,11 +28,13 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: "#403E41",
     color: "White",
   },
+
   appBar: {
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    background: "#323232",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -140,10 +142,11 @@ export default function MainDrawer(props) {
 
         <List>
           {[
+            ["Home", "/"],
             ["DashBoard", "/dashboard"],
             ["TaskSheet", "/taskpage"],
           ].map((text, index) => (
-            <Link to={text[1]}>
+            <Link to={text[1]} key={index}>
               <ListItem button key={text[0]}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}

@@ -37,25 +37,26 @@ export default function MaxWidthDialog({
   setOpen,
   handleClose,
   handleClickOpen,
-  children,
+  selectedDate,
 }) {
   const classes = useStyles();
-
+  console.log(selectedDate);
   return (
     <React.Fragment>
-      {children}
       <Dialog
-        maxWidth
+        fullWidth
+        maxWidth="lg"
         open={open}
         onClose={handleClose}
         aria-labelledby="max-width-dialog-title"
       >
-        <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
+        <DialogTitle id="max-width-dialog-title">Add Task</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            You can set my maximum width and whether to adapt or not.
+            {" "}
+            Selected Date : {selectedDate}{" "}
           </DialogContentText>
-          {/*       <DemoForm /> */}
+          <DemoForm />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
