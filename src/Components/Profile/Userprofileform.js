@@ -9,6 +9,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
+import { Storage } from "aws-amplify";
+import { AmplifyS3Image } from "@aws-amplify/ui-react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +37,17 @@ export default function Userprofileform() {
   const handleOpen = () => {
     setOpen(true);
   };
+  async function onChange(e) {
+    const file = e.target.files[0];
+    try {
+      await Storage.put(file.name, file, {
+        // contentType: "image/png",
+        level: "private", // contentType is optional
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -86,6 +99,7 @@ export default function Userprofileform() {
                 label="Phone Number"
                 data-cy="user-phone"
                 defaultCountry={"in"}
+                // onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -135,6 +149,7 @@ export default function Userprofileform() {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -147,6 +162,7 @@ export default function Userprofileform() {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                onChange={onChange}
               />
             </Grid>
             <Button
@@ -155,6 +171,7 @@ export default function Userprofileform() {
               size="large"
               style={{ margin: "10px" }}
               startIcon={<SaveIcon />}
+              onClick={onChange}
             >
               Save
             </Button>
