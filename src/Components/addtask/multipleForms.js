@@ -1,6 +1,7 @@
 import { Grid, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,30 +12,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let newDate = new Date();
+let date = moment(newDate).format("YYYY-MM-DD");
+
 const formData = [
-  { fieldName: "name", type: "name", row: 1 },
-  { fieldName: "description", type: "description", row: 4 },
-  { fieldName: "tag", type: "tag", row: 1 },
-  { fieldName: "date", type: "datetime-local", row: 1 },
+  { fieldName: "Name", type: "name", row: 1, default: "" },
+  { fieldName: "Description", type: "description", row: 4, default: "" },
+  { fieldName: "Tag", type: "tag", row: 1, default: "" },
+  {
+    fieldName: "Deadline",
+    type: "date",
+    row: 1,
+    default: date,
+  },
 ];
 
 const MultipleForms = () => {
   const [inputfields, setInputfields] = useState([
     {
-      name: "",
-      description: "",
-      tag: "",
-      date: "",
+      Name: "",
+      Description: "",
+      Tag: "",
+      Deadline: "",
     },
   ]);
   const handleAddNewfields = () => {
     setInputfields([
       ...inputfields,
       {
-        name: "",
-        description: "",
-        tag: "",
-        date: "",
+        Name: "",
+        Description: "",
+        Tag: "",
+        Deadline: "",
       },
     ]);
   };
@@ -70,6 +79,7 @@ const MultipleForms = () => {
                   rows={formfield.row}
                   margin="dense"
                   variant="outlined"
+                  defaultValue={formfield.default}
                   label={formfield.fieldName}
                   type={formfield.type}
                   onChange={(e) => handleOnChange(e, index)}
