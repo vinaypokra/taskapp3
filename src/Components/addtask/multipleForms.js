@@ -26,7 +26,7 @@ const formData = [
     default: date,
   },
 ];
-
+var taskData = [];
 const MultipleForms = () => {
   const [inputfields, setInputfields] = useState([
     {
@@ -60,10 +60,10 @@ const MultipleForms = () => {
     setInputfields(values);
   };
 
-  console.log(inputfields);
-
   const hello = (e) => {
     e.preventDefault();
+    taskData = [...inputfields];
+    console.log(taskData);
   };
   const classes = useStyles();
   return (
@@ -77,6 +77,7 @@ const MultipleForms = () => {
                 <Grid item>
                   <TextField
                     id={formfield.fieldName}
+                    name={formfield.fieldName}
                     autoFocus
                     rows={formfield.row}
                     margin="dense"
