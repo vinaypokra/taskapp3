@@ -134,7 +134,16 @@ const MultipleForms = () => {
             variant="contained"
             color="primary"
             style={{ margin: "8px" }}
-            onClick={handleAddNewfields}
+            onClick={() => {
+              setInputfields([
+                {
+                  Name: "",
+                  Description: "",
+                  Assigned: "",
+                  Deadline: "",
+                },
+              ]);
+            }}
           >
             AddNewTask
             <Add style={{ marginLeft: "5px" }} />
