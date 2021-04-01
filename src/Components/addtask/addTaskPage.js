@@ -12,6 +12,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Switch from "@material-ui/core/Switch";
+import TaskForm from "./taskForm";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -38,60 +39,19 @@ export default function MaxWidthDialog({
 }) {
   const classes = useStyles();
 
-  const [fullWidth, setFullWidth] = React.useState(true);
-  const [maxWidth, setMaxWidth] = React.useState("sm");
-
-  const handleMaxWidthChange = (event) => {
-    setMaxWidth(event.target.value);
-  };
-
-  const handleFullWidthChange = (event) => {
-    setFullWidth(event.target.checked);
-  };
-
   return (
     <React.Fragment>
       {children}
       <Dialog
-        fullWidth={fullWidth}
-        maxWidth={maxWidth}
+        maxWidth
         open={open}
         onClose={handleClose}
         aria-labelledby="max-width-dialog-title"
       >
         <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            You can set my maximum width and whether to adapt or not.
-          </DialogContentText>
-          <form className={classes.form} noValidate>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="max-width">maxWidth</InputLabel>
-              <Select
-                autoFocus
-                value={maxWidth}
-                onChange={handleMaxWidthChange}
-                inputProps={{
-                  name: "max-width",
-                  id: "max-width",
-                }}
-              >
-                <MenuItem value={false}>false</MenuItem>
-                <MenuItem value="xs">xs</MenuItem>
-                <MenuItem value="sm">sm</MenuItem>
-                <MenuItem value="md">md</MenuItem>
-                <MenuItem value="lg">lg</MenuItem>
-                <MenuItem value="xl">xl</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControlLabel
-              className={classes.formControlLabel}
-              control={
-                <Switch checked={fullWidth} onChange={handleFullWidthChange} />
-              }
-              label="Full width"
-            />
-          </form>
+          <DialogContentText>Add a task for Today!</DialogContentText>
+          <TaskForm />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
