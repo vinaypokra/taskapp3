@@ -38,10 +38,21 @@ export default function Userprofileform() {
     setOpen(true);
   };
   async function onChange(e) {
+    // const file = e.target.files[0];
+    try {
+      const result = await Storage.put("test.txt", "Private Content", {
+        level: "private",
+        contentType: "text/plain",
+      });
+    } catch (error) {
+      alert(error);
+    }
+  }
+  async function onChanges(e) {
     const file = e.target.files[0];
     try {
       await Storage.put(file.name, file, {
-        // contentType: "image/png",
+        contentType: "image/png",
         level: "private", // contentType is optional
       });
     } catch (error) {
@@ -63,6 +74,7 @@ export default function Userprofileform() {
                 fullWidth
                 id="firstName"
                 label="First Name"
+                onChange={onChange}
                 autoFocus
               />
             </Grid>
@@ -75,6 +87,7 @@ export default function Userprofileform() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -89,6 +102,7 @@ export default function Userprofileform() {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -100,6 +114,7 @@ export default function Userprofileform() {
                 data-cy="user-phone"
                 defaultCountry={"in"}
                 // onChange={handleChange}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -137,6 +152,7 @@ export default function Userprofileform() {
                 label="Employee ID"
                 name="Employee ID"
                 autoComplete="Employee ID"
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -149,7 +165,7 @@ export default function Userprofileform() {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                onChange={onChange}
+                onChange={onChanges}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -162,7 +178,7 @@ export default function Userprofileform() {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                onChange={onChange}
+                onChange={onChanges}
               />
             </Grid>
             <Button
@@ -171,7 +187,7 @@ export default function Userprofileform() {
               size="large"
               style={{ margin: "10px" }}
               startIcon={<SaveIcon />}
-              onClick={onChange}
+              onClick={(onChange, onChanges)}
             >
               Save
             </Button>
