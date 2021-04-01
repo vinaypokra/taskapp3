@@ -16,8 +16,6 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: "100%",
-    height: "100vh", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
   },
 }));
 
@@ -69,6 +67,8 @@ export default function Userprofileform() {
             <Grid item xs={12} sm={6}>
               <TextField
                 id="date"
+                variant="outlined"
+                fullWidth
                 label="Date of Birth"
                 type="date"
                 defaultValue="2017-05-24"
@@ -80,6 +80,8 @@ export default function Userprofileform() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <MuiPhoneNumber
+                variant="outlined"
+                fullWidth
                 name="phone"
                 label="Phone Number"
                 data-cy="user-phone"
@@ -90,17 +92,17 @@ export default function Userprofileform() {
               {/* <Button className={classes.button} onClick={handleOpen}>
                 Gender
               </Button> */}
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-controlled-open-select-label">
-                  Gender
-                </InputLabel>
-                <Select
-                  labelId="demo-controlled-open-select-label"
-                  id="demo-controlled-open-select"
+              <FormControl className={classes.form}>
+                <TextField
+                  select
+                  fullWidth
+                  variant="outlined"
+                  label="Gender"
+                  labelId="gender"
+                  id="gender"
                   open={open}
                   onClose={handleClose}
                   onOpen={handleOpen}
-                  value={gender}
                   onChange={handleChange}
                 >
                   <MenuItem value="">
@@ -109,7 +111,7 @@ export default function Userprofileform() {
                   <MenuItem value={10}>Female</MenuItem>
                   <MenuItem value={20}>Male</MenuItem>
                   <MenuItem value={30}>Other</MenuItem>
-                </Select>
+                </TextField>
               </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -125,6 +127,8 @@ export default function Userprofileform() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                variant="outlined"
+                fullWidth
                 label="Upload Your ID"
                 name="ID"
                 type="file"
@@ -135,6 +139,8 @@ export default function Userprofileform() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                variant="outlined"
+                fullWidth
                 label="Upload Your Resume"
                 name="upload-resume"
                 type="file"
@@ -147,7 +153,7 @@ export default function Userprofileform() {
               variant="contained"
               color="primary"
               size="large"
-              className={classes.button}
+              style={{ margin: "10px" }}
               startIcon={<SaveIcon />}
             >
               Save
