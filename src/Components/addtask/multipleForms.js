@@ -92,6 +92,7 @@ const MultipleForms = () => {
                       id={formfield.fieldName}
                       name={formfield.fieldName}
                       autoFocus
+                      multiline
                       rows={formfield.row}
                       margin="dense"
                       variant="outlined"
@@ -129,7 +130,7 @@ const MultipleForms = () => {
         </form>
       ) : (
         <>
-          <Typography variant="h5">Task Send...</Typography>
+          <Typography variant="h5">Task Sent...</Typography>
           <Button
             variant="contained"
             color="primary"
@@ -145,7 +146,7 @@ const MultipleForms = () => {
               ]);
             }}
           >
-            AddNewTask
+            Add New Task
             <Add style={{ marginLeft: "5px" }} />
           </Button>
         </>
