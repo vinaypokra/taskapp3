@@ -22,7 +22,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-timelinesheet-dev-43220-deployment/amplify-cfn-templates/auth/timelinesheet512d65f5-cloudformation-template.yml",
         "logicalId": "authtimelinesheet512d65f5"
       },
-      "lastPushTimeStamp": "2021-03-30T23:08:32.526Z",
+      "lastPushTimeStamp": "2021-04-01T18:20:40.682Z",
       "output": {
         "UserPoolId": "ap-south-1_Edax2VgiJ",
         "AppClientIDWeb": "67kvtju6ok0cmr8lpg4m0srnb9",
@@ -32,6 +32,22 @@
         "UserPoolName": "timelinesheet512d65f5_userpool_512d65f5"
       },
       "lastPushDirHash": "fL+e4qCJPseifPdqNxHaSuJJ3Kw="
+    }
+  },
+  "storage": {
+    "Userdata": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-timelinesheet-dev-43220-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+        "logicalId": "storageUserdata"
+      },
+      "lastPushTimeStamp": "2021-04-01T18:20:40.691Z",
+      "output": {
+        "BucketName": "userdata43220-dev",
+        "Region": "ap-south-1"
+      },
+      "lastPushDirHash": "WQTdEg9/8a+AAVXE8ccn4mDHUP0="
     }
   }
 }

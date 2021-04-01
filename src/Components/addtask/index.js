@@ -13,7 +13,7 @@ const Addtask = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const selectedDate = moment(dateState).format("MM/DD/YYYY");
+  const selectedDate = moment(dateState).format("DD/MM/YYYY");
   return (
     <>
       <Calendar {...{ handleClickOpen, setDateState, selectedDate }}>
