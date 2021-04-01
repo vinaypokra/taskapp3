@@ -3,6 +3,7 @@ import TaskPage from "./Components/addtask/";
 import Dashboard from "./Components/dashboard";
 import { BrowserRouter as Routers, Route } from "react-router-dom";
 import Navigation from "./Components/Drawer";
+import Userprofileform from "./Components/Profile/Userprofileform";
 import { AmplifyAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./aws-exports";
@@ -27,6 +28,9 @@ function App() {
           signout={<AmplifySignOut />}
           currentUser={user.attributes.email}
         >
+          <Route exact path="/">
+            <Userprofileform />
+          </Route>
           <Route path="/taskpage">
             <TaskPage />
           </Route>
