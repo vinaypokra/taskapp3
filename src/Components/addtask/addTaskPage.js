@@ -66,7 +66,7 @@ export default function MaxWidthDialog({
           <DialogContentText>
             You can set my maximum width and whether to adapt or not.
           </DialogContentText>
-          <DemoForm />
+          {/*       <DemoForm /> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
