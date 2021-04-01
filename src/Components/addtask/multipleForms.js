@@ -1,8 +1,10 @@
 import { Button, Grid, TextField, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import { Remove, Add, Send } from "@material-ui/icons";
+import { connect } from "react-redux";
+import { fetchData } from "../../actions/";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +30,10 @@ const formData = [
   },
 ];
 var taskData = [];
-const MultipleForms = () => {
+const MultipleForms = (props) => {
+  useEffect(() => {
+    props.fetchData();
+  }, []);
   const [inputfields, setInputfields] = useState([
     {
       Name: "",
@@ -154,5 +159,8 @@ const MultipleForms = () => {
     </>
   );
 };
-
-export default MultipleForms;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return { taskData: state };
+};
+export default connect(mapStateToProps, { fetchData })(MultipleForms);
