@@ -12,6 +12,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import Switch from "@material-ui/core/Switch";
+import TaskForm from "./taskForm";
 
 import DemoForm from "./formDemo";
 
@@ -40,23 +41,11 @@ export default function MaxWidthDialog({
 }) {
   const classes = useStyles();
 
-  const [fullWidth, setFullWidth] = React.useState(true);
-  const [maxWidth, setMaxWidth] = React.useState("sm");
-
-  const handleMaxWidthChange = (event) => {
-    setMaxWidth(event.target.value);
-  };
-
-  const handleFullWidthChange = (event) => {
-    setFullWidth(event.target.checked);
-  };
-
   return (
     <React.Fragment>
       {children}
       <Dialog
-        fullWidth={fullWidth}
-        maxWidth={maxWidth}
+        maxWidth
         open={open}
         onClose={handleClose}
         aria-labelledby="max-width-dialog-title"

@@ -1,11 +1,5 @@
 import React from "react";
-
-const DashBoard = () => {
-  return (
-    <>
-      <h1>DashBoard task upload here</h1>
-    </>
-  );
+const Dashboard = () => {
+  return <h1 style={{ color: "black" }}>Dashboard Page</h1>;
 };
-
-export default DashBoard;
+export default Dashboard;
