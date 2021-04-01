@@ -6,6 +6,7 @@ import { Remove, Add, Send } from "@material-ui/icons";
 import { connect } from "react-redux";
 import { fetchData } from "../../actions/";
 
+import { db } from "../../base";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
@@ -19,14 +20,21 @@ let newDate = new Date();
 let date = moment(newDate).format("YYYY-MM-DD");
 
 const formData = [
-  { fieldName: "Name", type: "name", row: 1, default: "" },
-  { fieldName: "Description", type: "description", row: 4, default: "" },
-  { fieldName: "Assigned", type: "tag", row: 1, default: "" },
+  { fieldName: "Name", type: "name", row: 1, default: "", mul: false },
+  {
+    fieldName: "Description",
+    type: "description",
+    row: 4,
+    default: "",
+    mul: true,
+  },
+  { fieldName: "Assigned", type: "tag", row: 1, default: "", mul: false },
   {
     fieldName: "Deadline",
     type: "date",
     row: 1,
     default: date,
+    mul: false,
   },
 ];
 var taskData = [];
@@ -79,6 +87,7 @@ const MultipleForms = (props) => {
         taskDeadLine: value.Deadline,
       });
     });
+    db.collection("taskdata").doc("taskData").set({ taskData });
     console.log(taskData);
     setInputfields(null);
   };
@@ -97,7 +106,7 @@ const MultipleForms = (props) => {
                       id={formfield.fieldName}
                       name={formfield.fieldName}
                       autoFocus
-                      multiline
+                      multiline={formfield.mul}
                       rows={formfield.row}
                       margin="dense"
                       variant="outlined"
