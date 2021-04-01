@@ -1,4 +1,4 @@
-import { Grid, TextField } from "@material-ui/core";
+import { Grid, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& .MuiTextField-root": {
       margin: theme.spacing(1),
-      width: "30ch",
+      width: "40ch",
     },
   },
 }));
@@ -61,25 +61,32 @@ const MultipleForms = () => {
     <>
       <form className={classes.root} autoComplete="off" onSubmit={hello}>
         {inputfields.map((inputfield, index) => (
-          <Grid container direction="column">
-            {formData.map((formfield) => (
-              <Grid item>
-                <TextField
-                  id={formfield.fieldName}
-                  autoFocus
-                  rows={formfield.row}
-                  margin="dense"
-                  variant="outlined"
-                  label={formfield.fieldName}
-                  type={formfield.type}
-                  onChange={(e) => handleOnChange(e, index)}
-                  required
-                />
-              </Grid>
-            ))}
-            {index !== 0 ? (
-              <button onClick={() => handleRemoveNewfields(index)}>Min</button>
-            ) : null}
+          <Grid container direction="row" xs={4} justify="center">
+            <Typography>Task {index + 1}</Typography>
+            <Grid xs={11} container item direction="column">
+              {formData.map((formfield) => (
+                <Grid item>
+                  <TextField
+                    id={formfield.fieldName}
+                    autoFocus
+                    rows={formfield.row}
+                    margin="dense"
+                    variant="outlined"
+                    label={formfield.fieldName}
+                    type={formfield.type}
+                    onChange={(e) => handleOnChange(e, index)}
+                    required
+                  />
+                </Grid>
+              ))}
+            </Grid>
+            <Grid item xs={1}>
+              {index !== 0 ? (
+                <button onClick={() => handleRemoveNewfields(index)}>
+                  Min
+                </button>
+              ) : null}
+            </Grid>
           </Grid>
         ))}
         <button onClick={handleAddNewfields}>add</button>
