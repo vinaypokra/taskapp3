@@ -1,7 +1,8 @@
-import { Grid, TextField, Typography } from "@material-ui/core";
+import { Button, Grid, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
+import { Remove, Add, Send } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +19,7 @@ let date = moment(newDate).format("YYYY-MM-DD");
 const formData = [
   { fieldName: "Name", type: "name", row: 1, default: "" },
   { fieldName: "Description", type: "description", row: 4, default: "" },
-  { fieldName: "Tag", type: "tag", row: 1, default: "" },
+  { fieldName: "Assigned", type: "tag", row: 1, default: "" },
   {
     fieldName: "Deadline",
     type: "date",
@@ -32,7 +33,7 @@ const MultipleForms = () => {
     {
       Name: "",
       Description: "",
-      Tag: "",
+      Assigned: "",
       Deadline: "",
     },
   ]);
@@ -42,7 +43,7 @@ const MultipleForms = () => {
       {
         Name: "",
         Description: "",
-        Tag: "",
+        Assigned: "",
         Deadline: "",
       },
     ]);
@@ -70,8 +71,8 @@ const MultipleForms = () => {
     <>
       <form className={classes.root} autoComplete="off" onSubmit={hello}>
         {inputfields.map((inputfield, index) => (
-          <Grid container direction="row" xs={4} justify="center">
-            <Typography>Task {index + 1}</Typography>
+          <Grid container direction="row" xs={4}>
+            <Typography color="primary">Task {index + 1}</Typography>
             <Grid xs={11} container item direction="column">
               {formData.map((formfield) => (
                 <Grid item>
@@ -92,17 +93,27 @@ const MultipleForms = () => {
               ))}
             </Grid>
             <Grid item xs={1}>
+              <Button onClick={handleAddNewfields}>
+                <Add color="primary" />
+              </Button>
               {index !== 0 ? (
-                <button onClick={() => handleRemoveNewfields(index)}>
-                  Min
-                </button>
+                <Button onClick={() => handleRemoveNewfields(index)}>
+                  <Remove color="error" />
+                </Button>
               ) : null}
             </Grid>
           </Grid>
         ))}
-        <button onClick={handleAddNewfields}>add</button>
 
-        <button type="submit">Submit</button>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          style={{ margin: "8px" }}
+        >
+          Submit
+          <Send style={{ marginLeft: "5px" }} />
+        </Button>
       </form>
     </>
   );
