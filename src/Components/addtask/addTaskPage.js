@@ -14,7 +14,7 @@ import Select from "@material-ui/core/Select";
 import Switch from "@material-ui/core/Switch";
 import TaskForm from "./taskForm";
 
-import DemoForm from "./formDemo";
+import MultipleForms from "./multipleForms";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -56,7 +56,7 @@ export default function MaxWidthDialog({
             {" "}
             Selected Date : {selectedDate}{" "}
           </DialogContentText>
-          <DemoForm />
+          <MultipleForms />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
