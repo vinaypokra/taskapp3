@@ -45,10 +45,10 @@ function App() {
             <>
               {" "}
               <Route path="/taskpage">
-                <h1>Pending for verification</h1>
+                <h1 style={{ color: "black" }}>Pending for verification</h1>
               </Route>
               <Route path="/dashboard">
-                <h1>Pending for verification</h1>
+                <h1 style={{ color: "black" }}>Pending for verification</h1>
               </Route>
             </>
           )}
