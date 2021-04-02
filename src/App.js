@@ -23,6 +23,7 @@ function App() {
 
   return authState === AuthState.SignedIn && user ? (
     <>
+      {sessionStorage.setItem("userName", user.attributes.email)}
       <Routers>
         <Navigation
           signout={<AmplifySignOut />}

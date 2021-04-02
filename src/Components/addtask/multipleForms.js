@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment";
 import { Remove, Add, Send } from "@material-ui/icons";
 import { connect } from "react-redux";
-import { fetchData } from "../../actions/";
+import { fetchData, setData, sendDataToBase } from "../../actions/";
 
 import { db } from "../../base";
 const useStyles = makeStyles((theme) => ({
@@ -37,11 +37,12 @@ const formData = [
     mul: false,
   },
 ];
-var taskData = [];
+
 const MultipleForms = (props) => {
-  useEffect(() => {
-    props.fetchData();
+  React.useEffect(() => {
+    props.fetchData(sessionStorage.getItem("userName"));
   }, []);
+
   const [inputfields, setInputfields] = useState([
     {
       Name: "",
@@ -78,7 +79,7 @@ const MultipleForms = (props) => {
     e.preventDefault();
 
     inputfields.map((value) => {
-      taskData.push({
+      props.setData({
         id: moment(newDate).format("YYYYMMDDHHMMSS"),
         taskAddDate: date,
         taskName: value.Name,
@@ -86,9 +87,22 @@ const MultipleForms = (props) => {
         taskTo: value.Assigned.split(" "),
         taskDeadLine: value.Deadline,
       });
+      value.Assigned.split(" ").map((val) => {
+        console.log(val);
+        props.sendDataToBase(`${val}`);
+      });
+
+      /* db.collection("taskdata")
+        .doc("taskData")
+        .set({
+          id: moment(newDate).format("YYYYMMDDHHMMSS"),
+          taskAddDate: date,
+          taskName: value.Name,
+          taskDescription: value.Description,
+          taskTo: value.Assigned.split(" "),
+          taskDeadLine: value.Deadline,
+        }); */
     });
-    db.collection("taskdata").doc("taskData").set({ taskData });
-    console.log(taskData);
     setInputfields(null);
   };
   const classes = useStyles();
@@ -169,7 +183,9 @@ const MultipleForms = (props) => {
   );
 };
 const mapStateToProps = (state) => {
-  console.log(state);
-  return { taskData: state };
+  console.log("taskData", state.taskData);
+  return { taskData: state.taskData };
 };
-export default connect(mapStateToProps, { fetchData })(MultipleForms);
+export default connect(mapStateToProps, { fetchData, setData, sendDataToBase })(
+  MultipleForms
+);
