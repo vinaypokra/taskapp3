@@ -32,12 +32,16 @@ function App() {
           <Route exact path="/">
             <Userprofileform />
           </Route>
-          <Route path="/taskpage">
-            <TaskPage />
-          </Route>
-          <Route path="/dashboard">
-            <Dashboard />
-          </Route>
+          {user.attributes.email === "vvinayppokra@gmail.com" ? (
+            <>
+              <Route path="/taskpage">
+                <TaskPage />
+              </Route>
+              <Route path="/dashboard">
+                <Dashboard />
+              </Route>
+            </>
+          ) : null}
         </Navigation>
       </Routers>
     </>
