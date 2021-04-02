@@ -72,16 +72,19 @@ export default function Userprofileform() {
   });
 
   const AddData = () => {
-    db.collection("users").add({
-      FirstName: userdata.FirstName,
-      LastName: userdata.LastName,
-      Dob: userdata.Dob,
-      PhoneNumber: userdata.PhoneNumber,
-      Gender: userdata.Gender,
-      EmployeeId: userdata.EmployeeId,
-      Resume: userdata.Resume,
-      ID: userdata.ID,
-    });
+    db.collection("emailDataBase")
+      .doc("emails")
+      .add({
+        FirstName: userdata.FirstName,
+        LastName: userdata.LastName,
+        DOB: userdata.Dob,
+        Phone: userdata.PhoneNumber,
+        Gender: userdata.Gender,
+        EmployeeId: userdata.EmployeeId,
+        Resume: userdata.Resume,
+        IDCard: userdata.ID,
+        Email: sessionStorage.getItem("userName"),
+      });
   };
 
   return (
@@ -147,7 +150,6 @@ export default function Userprofileform() {
                 fullWidth
                 name="phone"
                 label="Phone Number"
-                data-cy="user-phone"
                 defaultCountry={"in"}
                 // onChange={handleChange}
                 // onChange={onChange}
@@ -167,7 +169,6 @@ export default function Userprofileform() {
                   fullWidth
                   variant="outlined"
                   label="Gender"
-                  labelId="gender"
                   id="gender"
                   open={open}
                   onClose={handleClose}
