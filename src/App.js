@@ -42,6 +42,12 @@ function App() {
               </Route>
             </>
           ) : null}
+          <Route path="/taskpage">
+            <h1>Pending for verification</h1>
+          </Route>
+          <Route path="/dashboard">
+            <h1>Pending for verification</h1>
+          </Route>
         </Navigation>
       </Routers>
     </>
