@@ -8,7 +8,18 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
+import { Button } from "@material-ui/core";
+const useStyles = makeStyles({
+  root: {
+    "& .MuiTable-root": {
+      minWidth: 650,
+    },
+    "& .MuiTableCell-head": {
+      background: "aliceblue",
+      fontWeight: "700",
+    },
+  },
+});
 const FetchUser = () => {
   const [userDataHolder, setUserdataHolder] = useState([]);
   useEffect(() => {
@@ -23,24 +34,48 @@ const FetchUser = () => {
   }, []);
   console.log(userDataHolder);
 
+  const classes = useStyles();
   return (
     <>
       <h1 style={{ color: "black" }}>Hello</h1>
-      <TableHead>
-        <TableRow>
-          <TableCell align="left">Name</TableCell>
-          <TableCell align="left">Date of Birth</TableCell>
-          <TableCell align="left">Email</TableCell>
-          <TableCell align="left"></TableCell>
-          <TableCell align="left">Status</TableCell>
-          {sessionStorage.getItem("userName") !== "admin@gmail.com" ? (
-            <TableCell align="left">Update</TableCell>
-          ) : null}
-        </TableRow>
-      </TableHead>
-      {userDataHolder.map((val) => {
-        return <p style={{ color: "black" }}>Email = {val.allData.Email}</p>;
-      })}
+      <TableContainer component={Paper}>
+        <Table className={classes.root} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="left">Name</TableCell>
+              <TableCell align="left">Gender</TableCell>
+              <TableCell align="left">Date of Birth</TableCell>
+              <TableCell align="left">Email</TableCell>
+              <TableCell align="left">Phone Number</TableCell>
+              <TableCell align="left">Employee ID</TableCell>
+              <TableCell align="left">ID Card</TableCell>
+              <TableCell align="left">Resume</TableCell>
+              <TableCell align="left">Status</TableCell>
+              <TableCell align="left">Approve</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {userDataHolder.map((val, key) => (
+              <TableRow key={key}>
+                <TableCell align="left">{`${val.allData.FirstName} ${val.allData.LastName}`}</TableCell>
+                <TableCell align="left">{val.allData.Gender}</TableCell>
+                <TableCell align="left">{val.allData.DOB}</TableCell>
+                <TableCell align="left">{val.allData.Email}</TableCell>
+                <TableCell align="left">{val.allData.Phone}</TableCell>
+                <TableCell align="left">{val.allData.EmployeeId}</TableCell>
+                <TableCell align="left">{val.allData.IDCard}</TableCell>
+                <TableCell align="left">{val.allData.Resume}</TableCell>
+                <TableCell align="left">{val.allData.Status}</TableCell>
+                <TableCell align="left">
+                  <Button variant="contained" color="primary" size="small">
+                    Approve
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 };
