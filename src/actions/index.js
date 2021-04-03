@@ -7,11 +7,13 @@ export const fetchData = (userEmail) => async (dispatch) => {
   });
 };
 async function getData(userEmail) {
-  return await db
+  const res = await db
     .collection("taskdata")
     .doc(`${userEmail}`)
     .get()
     .then((snapshot) => snapshot.data().allData);
+
+  return res !== undefined ? res : [];
 }
 
 export const setData = (taskInformation) => {
