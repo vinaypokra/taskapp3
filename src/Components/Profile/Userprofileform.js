@@ -93,6 +93,22 @@ const Userprofileform = (props) => {
       <form className={classes.form} noValidate>
         <Grid container spacing={3}>
           <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <h1 style={{ textAlign: "center", color: "black" }}>
+                User Profile
+              </h1>
+            </Grid>
+            <Grid item xs={12} style={{ textAlign: "center" }}>
+              <img
+                src="https://picsum.photos/200/300"
+                style={{
+                  width: "300px",
+                  height: "300px",
+                  borderRadius: "50%",
+                  textAlign: "center",
+                }}
+              />
+            </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
