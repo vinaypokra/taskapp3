@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -11,6 +11,7 @@ import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Storage } from "aws-amplify";
 import { AmplifyS3Image } from "@aws-amplify/ui-react";
+import { db } from "../../base";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,28 +38,54 @@ export default function Userprofileform() {
   const handleOpen = () => {
     setOpen(true);
   };
-  async function onChange(e) {
-    // const file = e.target.files[0];
-    try {
-      const result = await Storage.put("test.txt", "Private Content", {
-        level: "private",
-        contentType: "text/plain",
+  // async function onChange(e) {
+  //   // const file = e.target.files[0];
+  //   try {
+  //     const result = await Storage.put("test.txt", "Private Content", {
+  //       level: "private",
+  //       contentType: "text/plain",
+  //     });
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  // }
+  // async function onChanges(e) {
+  //   const file = e.target.files[0];
+  //   try {
+  //     await Storage.put(file.name, file, {
+  //       contentType: "image/png",
+  //       level: "private", // contentType is optional
+  //     });
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  // }
+  const [userdata, setUserdata] = useState({
+    FirstName: "",
+    LastName: "",
+    Dob: "",
+    PhoneNumber: "",
+    Gender: "",
+    EmployeeId: "",
+    Resume: "",
+    ID: "",
+  });
+
+  const AddData = () => {
+    db.collection("emailDataBase")
+      .doc("emails")
+      .add({
+        FirstName: userdata.FirstName,
+        LastName: userdata.LastName,
+        DOB: userdata.Dob,
+        Phone: userdata.PhoneNumber,
+        Gender: userdata.Gender,
+        EmployeeId: userdata.EmployeeId,
+        Resume: userdata.Resume,
+        IDCard: userdata.ID,
+        Email: sessionStorage.getItem("userName"),
       });
-    } catch (error) {
-      alert(error);
-    }
-  }
-  async function onChanges(e) {
-    const file = e.target.files[0];
-    try {
-      await Storage.put(file.name, file, {
-        contentType: "image/png",
-        level: "private", // contentType is optional
-      });
-    } catch (error) {
-      alert(error);
-    }
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -74,8 +101,12 @@ export default function Userprofileform() {
                 fullWidth
                 id="firstName"
                 label="First Name"
-                onChange={onChange}
+                // onChange={onChange}
                 autoFocus
+                value={userdata.FirstName}
+                onChange={(e) => {
+                  setUserdata({ ...userdata, FirstName: e.target.value });
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -87,7 +118,11 @@ export default function Userprofileform() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
-                onChange={onChange}
+                // onChange={onChange}
+                value={userdata.LastName}
+                onChange={(e) => {
+                  setUserdata({ ...userdata, LastName: e.target.value });
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -102,7 +137,11 @@ export default function Userprofileform() {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                onChange={onChange}
+                // onChange={onChange}
+                value={userdata.Dob}
+                onChange={(e) => {
+                  setUserdata({ ...userdata, Dob: e.target.value });
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -111,10 +150,13 @@ export default function Userprofileform() {
                 fullWidth
                 name="phone"
                 label="Phone Number"
-                data-cy="user-phone"
                 defaultCountry={"in"}
                 // onChange={handleChange}
-                onChange={onChange}
+                // onChange={onChange}
+                value={userdata.PhoneNumber}
+                onChange={(e) => {
+                  setUserdata({ ...userdata, PhoneNumber: e.target.value });
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -127,12 +169,15 @@ export default function Userprofileform() {
                   fullWidth
                   variant="outlined"
                   label="Gender"
-                  labelId="gender"
                   id="gender"
                   open={open}
                   onClose={handleClose}
                   onOpen={handleOpen}
-                  onChange={handleChange}
+                  // onChange={handleChange}
+                  value={userdata.Gender}
+                  onChange={(e) => {
+                    setUserdata({ ...userdata, Gender: e.target.value });
+                  }}
                 >
                   <MenuItem value="">
                     <em>None</em>
@@ -152,7 +197,28 @@ export default function Userprofileform() {
                 label="Employee ID"
                 name="Employee ID"
                 autoComplete="Employee ID"
-                onChange={onChange}
+                // onChange={onChange}
+                value={userdata.EmployeeId}
+                onChange={(e) => {
+                  setUserdata({ ...userdata, EmployeeId: e.target.value });
+                }}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                fullWidth
+                label="Upload Your Resume"
+                name="Resume"
+                type="file"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                // onChange={onChanges}
+                value={userdata.Resume}
+                onChange={(e) => {
+                  setUserdata({ ...userdata, Resume: e.target.value });
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -165,20 +231,11 @@ export default function Userprofileform() {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                onChange={onChanges}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                fullWidth
-                label="Upload Your Resume"
-                name="upload-resume"
-                type="file"
-                InputLabelProps={{
-                  shrink: true,
+                // onChange={onChanges}
+                value={userdata.ID}
+                onChange={(e) => {
+                  setUserdata({ ...userdata, ID: e.target.value });
                 }}
-                onChange={onChanges}
               />
             </Grid>
             <Button
@@ -187,7 +244,7 @@ export default function Userprofileform() {
               size="large"
               style={{ margin: "10px" }}
               startIcon={<SaveIcon />}
-              onClick={(onChange, onChanges)}
+              onClick={AddData}
             >
               Save
             </Button>
