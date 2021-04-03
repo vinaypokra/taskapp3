@@ -22,6 +22,8 @@ const useStyles = makeStyles({
 });
 const FetchUser = () => {
   const [userDataHolder, setUserdataHolder] = useState([]);
+  const [update, setUpdate] = useState(Math.floor(Math.random() * 100));
+
   useEffect(() => {
     async function getUserFromBase() {
       const response = await db
@@ -31,7 +33,7 @@ const FetchUser = () => {
       setUserdataHolder([...response]);
     }
     getUserFromBase();
-  }, []);
+  }, [update]);
   console.log(userDataHolder);
 
   const classes = useStyles();
@@ -67,11 +69,36 @@ const FetchUser = () => {
                 <TableCell align="left">{val.allData.Resume}</TableCell>
                 <TableCell align="left">{val.allData.Status}</TableCell>
                 <TableCell align="left">
-                  <Button variant="contained" color="primary" size="small">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    style={{ margin: "3px" }}
+                    onClick={() => {
+                      db.collection("emailDataBase")
+                        .doc(val.allData.Email)
+                        .set({
+                          allData: { ...val.allData, Status: "Approved" },
+                        });
+                      setUpdate(Math.floor(Math.random() * 20) + 11);
+                    }}
+                  >
                     Approve
                   </Button>
-
-                  <Button variant="contained" color="secondary" size="small">
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    style={{ margin: "3px" }}
+                    onClick={() => {
+                      db.collection("emailDataBase")
+                        .doc(val.allData.Email)
+                        .set({
+                          allData: { ...val.allData, Status: "Pending..." },
+                        });
+                      setUpdate(Math.floor(Math.random() * 10) + 1);
+                    }}
+                  >
                     Reject
                   </Button>
                 </TableCell>
