@@ -8,6 +8,7 @@ import { AmplifyAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./aws-exports";
 import Amplify from "aws-amplify";
+import AllUsers from "./Components/AllUsers/fetchAllUsers";
 Amplify.configure(awsconfig);
 
 function App() {
@@ -39,6 +40,9 @@ function App() {
               </Route>
               <Route path="/dashboard">
                 <Dashboard />
+              </Route>
+              <Route path="/alluser">
+                <AllUsers />
               </Route>
             </>
           ) : (
