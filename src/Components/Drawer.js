@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import clsx from "clsx";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
@@ -17,8 +16,8 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
+import DashboardOutlinedIcon from "@material-ui/icons/DashboardOutlined";
 
 const drawerWidth = 240;
 
@@ -149,7 +148,11 @@ export default function MainDrawer(props) {
             <Link to={text[1]} key={index}>
               <ListItem button key={text[0]}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {index % 2 === 0 ? (
+                    <HomeOutlinedIcon />
+                  ) : (
+                    <DashboardOutlinedIcon />
+                  )}
                 </ListItemIcon>
                 <ListItemText primary={text[0]} />
               </ListItem>
