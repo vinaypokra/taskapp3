@@ -72,19 +72,17 @@ export default function Userprofileform() {
   });
 
   const AddData = () => {
-    db.collection("emailDataBase")
-      .doc("emails")
-      .add({
-        FirstName: userdata.FirstName,
-        LastName: userdata.LastName,
-        DOB: userdata.Dob,
-        Phone: userdata.PhoneNumber,
-        Gender: userdata.Gender,
-        EmployeeId: userdata.EmployeeId,
-        Resume: userdata.Resume,
-        IDCard: userdata.ID,
-        Email: sessionStorage.getItem("userName"),
-      });
+    db.collection("emailDataBase").add({
+      FirstName: userdata.FirstName,
+      LastName: userdata.LastName,
+      DOB: userdata.Dob,
+      Phone: userdata.PhoneNumber,
+      Gender: userdata.Gender,
+      EmployeeId: userdata.EmployeeId,
+      Resume: userdata.Resume,
+      IDCard: userdata.ID,
+      Email: sessionStorage.getItem("userName"),
+    });
   };
 
   return (
@@ -145,7 +143,8 @@ export default function Userprofileform() {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <MuiPhoneNumber
+              <TextField
+                type="tel"
                 variant="outlined"
                 fullWidth
                 name="phone"
