@@ -184,9 +184,9 @@ const Userprofileform = (props) => {
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={10}>Female</MenuItem>
-                  <MenuItem value={20}>Male</MenuItem>
-                  <MenuItem value={30}>Other</MenuItem>
+                  <MenuItem value="Female">Female</MenuItem>
+                  <MenuItem value="Male">Male</MenuItem>
+                  <MenuItem value="Other">Other</MenuItem>
                 </TextField>
               </FormControl>
             </Grid>
