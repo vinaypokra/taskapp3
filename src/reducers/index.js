@@ -12,6 +12,19 @@ const fetchDataFromBase = (taskData = [], action) => {
       return taskData;
   }
 };
+
+const userPersonalDetails = (userInfo = [], action) => {
+  switch (action.type) {
+    case "SEND_USER_INFO":
+      action.payload(userInfo);
+      return userInfo;
+    case "USER_SET_DATA":
+      return action.payload;
+    default:
+      return userInfo;
+  }
+};
 export default combineReducers({
   taskData: fetchDataFromBase,
+  userInfo: userPersonalDetails,
 });

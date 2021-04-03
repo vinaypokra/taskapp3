@@ -30,3 +30,17 @@ export const sendDataToBase = (userEmail) => {
       db.collection("taskdata").doc(userEmail).set({ allData }),
   };
 };
+
+export const userProfileInfo = (userEmail) => {
+  return {
+    type: "SEND_USER_INFO",
+    payload: (allData) =>
+      db.collection("emailDataBase").doc(userEmail).set({ allData }),
+  };
+};
+export const setUserProfileInfo = (userInfo) => {
+  return {
+    type: "USER_SET_DATA",
+    payload: userInfo,
+  };
+};

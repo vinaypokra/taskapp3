@@ -11,7 +11,8 @@ import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Storage } from "aws-amplify";
 import { AmplifyS3Image } from "@aws-amplify/ui-react";
-import { db } from "../../base";
+import { connect } from "react-redux";
+import { userProfileInfo, setUserProfileInfo } from "../../actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Userprofileform() {
+const Userprofileform = (props) => {
   const classes = useStyles();
   const [gender, setGender] = React.useState("");
   const [open, setOpen] = React.useState(false);
@@ -72,7 +73,7 @@ export default function Userprofileform() {
   });
 
   const AddData = () => {
-    db.collection("emailDataBase").add({
+    props.setUserProfileInfo({
       FirstName: userdata.FirstName,
       LastName: userdata.LastName,
       DOB: userdata.Dob,
@@ -83,6 +84,7 @@ export default function Userprofileform() {
       IDCard: userdata.ID,
       Email: sessionStorage.getItem("userName"),
     });
+    props.userProfileInfo(sessionStorage.getItem("userName"));
   };
 
   return (
@@ -252,4 +254,12 @@ export default function Userprofileform() {
       </form>
     </div>
   );
-}
+};
+const mapStateToProps = (state) => {
+  console.log(state);
+  return { taskData: state };
+};
+export default connect(mapStateToProps, {
+  userProfileInfo,
+  setUserProfileInfo,
+})(Userprofileform);
