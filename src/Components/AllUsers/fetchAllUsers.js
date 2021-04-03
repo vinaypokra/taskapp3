@@ -8,7 +8,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 const useStyles = makeStyles({
   root: {
     "& .MuiTable-root": {
@@ -51,7 +51,7 @@ const FetchUser = () => {
               <TableCell align="left">ID Card</TableCell>
               <TableCell align="left">Resume</TableCell>
               <TableCell align="left">Status</TableCell>
-              <TableCell align="left">Approve</TableCell>
+              <TableCell align="left">Approve/Reject</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -69,6 +69,10 @@ const FetchUser = () => {
                 <TableCell align="left">
                   <Button variant="contained" color="primary" size="small">
                     Approve
+                  </Button>
+
+                  <Button variant="contained" color="secondary" size="small">
+                    Reject
                   </Button>
                 </TableCell>
               </TableRow>
