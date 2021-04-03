@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 });
 const FetchUser = () => {
   const [userDataHolder, setUserdataHolder] = useState([]);
-  const [update, setUpdate] = useState(Math.floor(Math.random() * 100));
+  const [update, setUpdate] = useState("");
 
   useEffect(() => {
     async function getUserFromBase() {
@@ -39,7 +39,7 @@ const FetchUser = () => {
   const classes = useStyles();
   return (
     <>
-      <h1 style={{ color: "black" }}>Hello</h1>
+      <h1 style={{ color: "black" }}>{update}</h1>
       <TableContainer component={Paper}>
         <Table className={classes.root} aria-label="simple table">
           <TableHead>
@@ -80,7 +80,10 @@ const FetchUser = () => {
                         .set({
                           allData: { ...val.allData, Status: "Approved" },
                         });
-                      setUpdate(Math.floor(Math.random() * 20) + 11);
+                      setUpdate("Wait...");
+                      setTimeout(() => {
+                        setUpdate("");
+                      }, 2000);
                     }}
                   >
                     Approve
@@ -96,7 +99,10 @@ const FetchUser = () => {
                         .set({
                           allData: { ...val.allData, Status: "Pending..." },
                         });
-                      setUpdate(Math.floor(Math.random() * 10) + 1);
+                      setUpdate("Wait...");
+                      setTimeout(() => {
+                        setUpdate("");
+                      }, 2000);
                     }}
                   >
                     Reject
