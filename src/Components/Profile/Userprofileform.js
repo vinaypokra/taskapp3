@@ -83,7 +83,7 @@ const Userprofileform = (props) => {
       Resume: userdata.Resume,
       IDCard: userdata.ID,
       Email: sessionStorage.getItem("userName"),
-      Status:
+      Status: "pending",
     });
     props.userProfileInfo(sessionStorage.getItem("userName"));
   };
