@@ -84,7 +84,7 @@ const Userprofileform = (props) => {
       IDCard: userdata.ID,
       Email: sessionStorage.getItem("userName"),
     });
-    props.userProfileInfo(sessionStorage.getItem("userName"));
+    props.userProfileInfo(`${sessionStorage.getItem("userName")}`);
   };
 
   return (
