@@ -8,7 +8,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography, Grid } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -27,6 +27,113 @@ const useStyles = makeStyles({
     },
   },
 });
+
+var value = [];
+
+function DialogBox({ open, handleClose }) {
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <Dialog
+        fullWidth
+        maxWidth="lg"
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="max-width-dialog-title"
+      >
+        <DialogTitle id="max-width-dialog-title">Profile</DialogTitle>
+        <DialogContent>
+          <TableContainer component={Paper}>
+            <Table className={classes.table} aria-label="simple table">
+              <TableBody>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    <Typography variant="h5" style={{ fontWeight: 700 }}>
+                      Name
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography variant="h5">{`${value.FirstName} ${value.LastName}`}</Typography>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    <Typography variant="h5" style={{ fontWeight: 700 }}>
+                      Gender
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography variant="h5">{value.Gender}</Typography>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    <Typography variant="h5" style={{ fontWeight: 700 }}>
+                      Date of Birth
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography variant="h5">{value.DOB}</Typography>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    <Typography variant="h5" style={{ fontWeight: 700 }}>
+                      Email
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography variant="h5">{value.Email}</Typography>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    <Typography variant="h5" style={{ fontWeight: 700 }}>
+                      Phone Number
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography variant="h5">{value.Phone}</Typography>
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    <Typography variant="h5" style={{ fontWeight: 700 }}>
+                      Employee ID
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="left">
+                    <Typography variant="h5">{value.EmployeeId}</Typography>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Grid
+            item
+            container
+            direction="column"
+            alignItems="center"
+            style={{ marginTop: "50px" }}
+            spacing={2}
+          >
+            <Grid item>
+              <img src={value.IDCard} alt="IDCard" />
+            </Grid>
+            <Grid item>
+              <img src={value.Resume} alt="Resume" />
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </React.Fragment>
+  );
+}
 
 const FetchUser = () => {
   const [userDataHolder, setUserdataHolder] = useState([]);
@@ -54,26 +161,7 @@ const FetchUser = () => {
   const classes = useStyles();
   return (
     <>
-      <Dialog
-        fullWidth
-        maxWidth="lg"
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="max-width-dialog-title"
-      >
-        <DialogTitle id="max-width-dialog-title">Profile</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            <Typography>Name:</Typography>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-
+      <DialogBox open={open} handleClose={handleClose} />
       <h1 style={{ color: "black" }}>{update}</h1>
       <TableContainer component={Paper}>
         <Table className={classes.root} aria-label="simple table">
@@ -150,24 +238,28 @@ const FetchUser = () => {
           </TableHead>
           <TableBody>
             {userDataHolder.map((val, key) => (
-              <TableRow key={key}>
-                <TableCell align="left">{`${val.allData.FirstName} ${val.allData.LastName}`}</TableCell>
-                {/* <TableCell align="left">{val.allData.Gender}</TableCell>
+              <>
+                <TableRow key={key}>
+                  <TableCell align="left">{`${val.allData.FirstName} ${val.allData.LastName}`}</TableCell>
+                  {/* <TableCell align="left">{val.allData.Gender}</TableCell>
                 <TableCell align="left">{val.allData.DOB}</TableCell> */}
-                <TableCell align="left">{val.allData.Email}</TableCell>
-                {/* <TableCell align="left">{val.allData.Phone}</TableCell> */}
-                <TableCell align="left">{val.allData.EmployeeId}</TableCell>
-                <TableCell align="left">
-                  <Button
-                    variant="contained"
-                    style={{ backgroundColor: "#323232", color: "white" }}
-                    size="small"
-                    onClick={handleClickOpen}
-                  >
-                    Click Here
-                  </Button>
-                </TableCell>
-                {/* <TableCell align="left">{val.allData.IDCard}</TableCell>
+                  <TableCell align="left">{val.allData.Email}</TableCell>
+                  {/* <TableCell align="left">{val.allData.Phone}</TableCell> */}
+                  <TableCell align="left">{val.allData.EmployeeId}</TableCell>
+                  <TableCell align="left">
+                    <Button
+                      variant="contained"
+                      style={{ backgroundColor: "#323232", color: "white" }}
+                      size="small"
+                      onClick={() => {
+                        handleClickOpen();
+                        value = val.allData;
+                      }}
+                    >
+                      Click Here
+                    </Button>
+                  </TableCell>
+                  {/* <TableCell align="left">{val.allData.IDCard}</TableCell>
                 <TableCell align="left">{val.allData.Resume}</TableCell> */}
                 <TableCell align="left">{val.allData.Status}</TableCell>
                 <TableCell align="left">
