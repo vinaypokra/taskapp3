@@ -102,12 +102,24 @@ const Userprofileform = (props) => {
               <img
                 src="https://picsum.photos/200/300"
                 style={{
-                  width: "300px",
-                  height: "300px",
+                  width: "250px",
+                  height: "250px",
                   borderRadius: "50%",
                   textAlign: "center",
                 }}
+                accept="image/*"
+                className={classes.input}
+                id="contained-button-file"
+                multiple
+                type="file"
               />
+            </Grid>
+            <Grid item xs={12} style={{ textAlign: "center" }}>
+              <label htmlFor="contained-button-file">
+                <Button variant="contained" color="primary" component="span">
+                  Upload
+                </Button>
+              </label>
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
