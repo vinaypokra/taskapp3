@@ -14,7 +14,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-const useStyles1 = makeStyles({
+const useStyles = makeStyles({
   root: {
     "& .MuiTable-root": {
       minWidth: 650,
@@ -27,22 +27,6 @@ const useStyles1 = makeStyles({
     },
   },
 });
-
-const useStyles2 = makeStyles((theme) => ({
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    margin: "auto",
-    width: "fit-content",
-  },
-  formControl: {
-    marginTop: theme.spacing(2),
-    minWidth: 120,
-  },
-  formControlLabel: {
-    marginTop: theme.spacing(1),
-  },
-}));
 
 const FetchUser = () => {
   const [userDataHolder, setUserdataHolder] = useState([]);
@@ -67,28 +51,9 @@ const FetchUser = () => {
   }, [update]);
   console.log(userDataHolder);
 
-  const classes = useStyles1();
-  const classes2 = useStyles2();
+  const classes = useStyles();
   return (
     <>
-      <Dialog
-        fullWidth
-        maxWidth="lg"
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="max-width-dialog-title"
-      >
-        <DialogTitle id="max-width-dialog-title">Add Task</DialogTitle>
-        <DialogContent>
-          <DialogContentText> Selected Date :</DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-
       <h1 style={{ color: "black" }}>{update}</h1>
       <TableContainer component={Paper}>
         <Table className={classes.root} aria-label="simple table">
