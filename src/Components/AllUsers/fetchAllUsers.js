@@ -15,8 +15,11 @@ const useStyles = makeStyles({
       minWidth: 650,
     },
     "& .MuiTableCell-head": {
-      background: "aliceblue",
+      background: "#323232",
       fontWeight: "700",
+    },
+    "& .MuiTableCell-body": {
+      background: "#32323257",
     },
   },
 });
@@ -40,20 +43,50 @@ const FetchUser = () => {
   return (
     <>
       <h1 style={{ color: "black" }}>{update}</h1>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} style={{ width: 1360 }}>
         <Table className={classes.root} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">Name</TableCell>
-              <TableCell align="left">Gender</TableCell>
-              <TableCell align="left">Date of Birth</TableCell>
-              <TableCell align="left">Email</TableCell>
-              <TableCell align="left">Phone Number</TableCell>
-              <TableCell align="left">Employee ID</TableCell>
-              <TableCell align="left">ID Card</TableCell>
-              <TableCell align="left">Resume</TableCell>
-              <TableCell align="left">Status</TableCell>
-              <TableCell align="left">Approve/Reject</TableCell>
+              <TableCell align="left">
+                <Typography style={{ color: "white", width: 200 }}>
+                  Name
+                </Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography style={{ color: "white" }}>Gender</Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography style={{ color: "white", width: 100 }}>
+                  Date of Birth
+                </Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography style={{ color: "white" }}>Email</Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography style={{ color: "white", width: 150 }}>
+                  Phone Number
+                </Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography style={{ color: "white", width: 100 }}>
+                  Employee ID
+                </Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography style={{ color: "white" }}>ID Card</Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography style={{ color: "white" }}>Resume</Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography style={{ color: "white" }}>Status</Typography>
+              </TableCell>
+              <TableCell align="left">
+                <Typography style={{ color: "white", width: 200 }}>
+                  Approve/Reject
+                </Typography>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
