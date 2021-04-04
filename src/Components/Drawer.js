@@ -141,10 +141,10 @@ export default function MainDrawer(props) {
 
         <List>
           {[
-            ["Home", "/"],
-            ["ProFile", "/profile"],
-            ["DashBoard", "/dashboard"],
-            ["TaskSheet", "/taskpage"],
+            ["HOME", "/"],
+            ["PROFILE", "/profile"],
+            ["DASHBOARD", "/dashboard"],
+            ["TASKSHEET", "/taskpage"],
           ].map((text, index) => (
             <Link
               to={text[1]}
@@ -175,7 +175,14 @@ export default function MainDrawer(props) {
           ))}
         </List>
         <Divider />
-        <div style={{ position: "absolute", bottom: "0px", width: "100%" }}>
+        <div
+          style={{
+            position: "absolute",
+            bottom: "0px",
+            width: "100%",
+            textAlign: "center",
+          }}
+        >
           <Typography variant="p">{props.currentUser}</Typography>{" "}
           {props.signout}
         </div>
