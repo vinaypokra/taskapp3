@@ -23,49 +23,56 @@ const UserRoutes = ({
     }
     getUserFromBase();
   }, []);
-
-  return (
-    <>
-      {userDataHolder.map((val) =>
-        val.allData.Email === currentUser &&
-        val.allData.Status === "Approved" ? (
-          <>
-            <Route exact path="/">
-              <h1>Welcome</h1>
-            </Route>
-            <Route exact path="/profile">
-              <UserProfileInfo />
-            </Route>
-            <Route path="/taskpage">
-              <TaskPage />
-            </Route>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
-          </>
-        ) : null
-      )}
-      {userDataHolder.map((val) =>
-        val.allData.Email === currentUser &&
-        val.allData.Status === "Pending..." ? (
-          <>
-            <Route path="/">
-              <Userprofileform />
-            </Route>
-            <Route path="/taskpage">
-              <Typography variant="h2" color="error">
-                Pending for verification...
-              </Typography>
-            </Route>
-            <Route path="/dashboard">
-              <Typography variant="h2" color="error">
-                Pending for verification...
-              </Typography>
-            </Route>
-          </>
-        ) : null
-      )}
-    </>
-  );
+  if (userDataHolder.length === 0) {
+    return (
+      <Route path="/">
+        <Userprofileform />
+      </Route>
+    );
+  } else {
+    return (
+      <>
+        {userDataHolder.map((val) =>
+          val.allData.Email === currentUser &&
+          val.allData.Status === "Approved" ? (
+            <>
+              <Route exact path="/">
+                <h1>Welcome</h1>
+              </Route>
+              <Route exact path="/profile">
+                <UserProfileInfo />
+              </Route>
+              <Route path="/taskpage">
+                <TaskPage />
+              </Route>
+              <Route path="/dashboard">
+                <Dashboard />
+              </Route>
+            </>
+          ) : null
+        )}
+        {userDataHolder.map((val) =>
+          val.allData.Email === currentUser &&
+          val.allData.Status === "Pending..." ? (
+            <>
+              <Route path="/">
+                <Userprofileform />
+              </Route>
+              <Route path="/taskpage">
+                <Typography variant="h2" color="error">
+                  Pending for verification...
+                </Typography>
+              </Route>
+              <Route path="/dashboard">
+                <Typography variant="h2" color="error">
+                  Pending for verification...
+                </Typography>
+              </Route>
+            </>
+          ) : null
+        )}
+      </>
+    );
+  }
 };
 export default UserRoutes;
