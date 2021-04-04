@@ -35,17 +35,17 @@ const UserRoutes = ({
         </Route>
         <Route exact path="/profile">
           <Typography variant="h2" color="error">
-            Pending for verification...
+            Submit Details...
           </Typography>
         </Route>
         <Route exact path="/taskpage">
           <Typography variant="h2" color="error">
-            Pending for verification...
+            Submit Details...
           </Typography>
         </Route>
         <Route exact path="/dashboard">
           <Typography variant="h2" color="error">
-            Pending for verification...
+            Submit Details...
           </Typography>
         </Route>
       </>
