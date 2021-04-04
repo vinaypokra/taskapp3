@@ -23,11 +23,32 @@ const UserRoutes = ({
     }
     getUserFromBase();
   }, []);
-  if (userDataHolder.length === 0) {
+  const emailDataCheck = userDataHolder.find(
+    (val) => val.allData.Email === currentUser
+  );
+
+  if (emailDataCheck === undefined) {
     return (
-      <Route path="/">
-        <Userprofileform />
-      </Route>
+      <>
+        <Route exact path="/">
+          <Userprofileform />
+        </Route>
+        <Route exact path="/profile">
+          <Typography variant="h2" color="error">
+            Submit Details...
+          </Typography>
+        </Route>
+        <Route exact path="/taskpage">
+          <Typography variant="h2" color="error">
+            Submit Details...
+          </Typography>
+        </Route>
+        <Route exact path="/dashboard">
+          <Typography variant="h2" color="error">
+            Submit Details...
+          </Typography>
+        </Route>
+      </>
     );
   } else {
     return (
