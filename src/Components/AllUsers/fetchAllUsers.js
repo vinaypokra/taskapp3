@@ -206,9 +206,7 @@ const FetchUser = () => {
                 </Typography>
               </TableCell>
               <TableCell align="left">
-                <Typography
-                  style={{ color: "white", width: 200, fontWeight: "700" }}
-                >
+                <Typography style={{ color: "white", fontWeight: "700" }}>
                   Profile
                 </Typography>
               </TableCell>
