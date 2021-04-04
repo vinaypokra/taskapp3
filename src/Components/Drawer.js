@@ -146,8 +146,22 @@ export default function MainDrawer(props) {
             ["DashBoard", "/dashboard"],
             ["TaskSheet", "/taskpage"],
           ].map((text, index) => (
-            <Link to={text[1]} key={index}>
-              <ListItem button key={text[0]}>
+            <Link
+              to={text[1]}
+              key={index}
+              style={{
+                textDecoration: "none",
+                backgroundColor: "#323232",
+              }}
+            >
+              <ListItem
+                button
+                key={text[0]}
+                style={{
+                  backgroundColor: index % 2 === 0 ? "#323232" : "#32323257",
+                  color: index % 2 !== 0 ? "#323232" : "white",
+                }}
+              >
                 <ListItemIcon>
                   {index % 2 === 0 ? (
                     <HomeOutlinedIcon />
