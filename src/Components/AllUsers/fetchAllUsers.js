@@ -43,7 +43,7 @@ const FetchUser = () => {
   return (
     <>
       <h1 style={{ color: "black" }}>{update}</h1>
-      <TableContainer component={Paper} style={{ width: 1360 }}>
+      <TableContainer component={Paper}>
         <Table className={classes.root} aria-label="simple table">
           <TableHead>
             <TableRow>
