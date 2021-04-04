@@ -1,4 +1,6 @@
 import { db } from "../base";
+
+/* TASK FOR USER */
 export const fetchData = (userEmail) => async (dispatch) => {
   const response = await getData(userEmail);
   dispatch({
@@ -30,6 +32,25 @@ export const sendDataToBase = (userEmail) => {
       db.collection("taskdata").doc(userEmail).set({ allData }),
   };
 };
+
+/* USER INFORMATION */
+
+export const fetchUserData = (userEmail) => async (dispatch) => {
+  const response = await getUserData(userEmail);
+  dispatch({
+    type: "FETCH_USER_DATA",
+    payload: response,
+  });
+};
+async function getUserData(userEmail) {
+  const response = await db
+    .collection("emailDataBase")
+    .doc(`${userEmail}`)
+    .get()
+    .then((snapshot) => snapshot.data().allData);
+
+  return response !== undefined ? response : [];
+}
 
 export const userProfileInfo = (userEmail) => {
   return {

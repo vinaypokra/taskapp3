@@ -1,10 +1,17 @@
 import { Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Routers, Route } from "react-router-dom";
+
+import { Route } from "react-router-dom";
 import { db } from "./base";
 
-const UserRoutes = ({ currentUser, TaskPage, Dashboard }) => {
-  const [userDataHolder, setUserdataHolder] = React.useState([]);
+const UserRoutes = ({
+  currentUser,
+  TaskPage,
+  Dashboard,
+  UserProfileInfo,
+  Userprofileform,
+}) => {
+  const [userDataHolder, setUserdataHolder] = useState([]);
 
   useEffect(() => {
     async function getUserFromBase() {
@@ -23,6 +30,12 @@ const UserRoutes = ({ currentUser, TaskPage, Dashboard }) => {
         val.allData.Email === currentUser &&
         val.allData.Status === "Approved" ? (
           <>
+            <Route exact path="/">
+              <h1>Welcome</h1>
+            </Route>
+            <Route exact path="/profile">
+              <UserProfileInfo />
+            </Route>
             <Route path="/taskpage">
               <TaskPage />
             </Route>
@@ -36,6 +49,9 @@ const UserRoutes = ({ currentUser, TaskPage, Dashboard }) => {
         val.allData.Email === currentUser &&
         val.allData.Status === "Pending..." ? (
           <>
+            <Route path="/">
+              <Userprofileform />
+            </Route>
             <Route path="/taskpage">
               <Typography variant="h2" color="error">
                 Pending for verification...

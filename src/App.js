@@ -4,6 +4,7 @@ import Dashboard from "./Components/dashboard";
 import { BrowserRouter as Routers, Route } from "react-router-dom";
 import Navigation from "./Components/Drawer";
 import Userprofileform from "./Components/Profile/Userprofileform";
+import UserProfileInfo from "./Components/Profile/UserProfileShow";
 import { AmplifyAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./aws-exports";
@@ -33,11 +34,14 @@ function App() {
           signout={<AmplifySignOut />}
           currentUser={user.attributes.email}
         >
-          <Route exact path="/">
-            <Userprofileform />
-          </Route>
           {user.attributes.email === "vvinayppokra@gmail.com" ? (
             <>
+              <Route exact path="/">
+                <Userprofileform />
+              </Route>
+              <Route exact path="/profile">
+                <UserProfileInfo />
+              </Route>
               <Route path="/taskpage">
                 <TaskPage />
               </Route>
@@ -52,8 +56,10 @@ function App() {
             <>
               <UserRouters
                 currentUser={user.attributes.email}
+                Userprofileform={Userprofileform}
                 TaskPage={TaskPage}
                 Dashboard={Dashboard}
+                UserProfileInfo={UserProfileInfo}
               />
             </>
           )}
