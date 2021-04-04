@@ -10,7 +10,7 @@ import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./aws-exports";
 import Amplify from "aws-amplify";
 import AllUsers from "./Components/AllUsers/fetchAllUsers";
-
+import AllTasks from "./Components/AllUsers/fetchAllUsersTask";
 import UserRouters from "./UserRoutes";
 Amplify.configure(awsconfig);
 
@@ -48,8 +48,11 @@ function App() {
               <Route path="/dashboard">
                 <Dashboard />
               </Route>
-              <Route path="/alluser">
+              <Route path="/allusers">
                 <AllUsers />
+              </Route>
+              <Route path="/alltasks">
+                <AllTasks />
               </Route>
             </>
           ) : (

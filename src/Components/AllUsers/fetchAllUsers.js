@@ -16,7 +16,6 @@ const useStyles = makeStyles({
     },
     "& .MuiTableCell-head": {
       background: "#323232",
-      fontWeight: "700",
     },
     "& .MuiTableCell-body": {
       background: "#32323257",
@@ -48,42 +47,69 @@ const FetchUser = () => {
           <TableHead>
             <TableRow>
               <TableCell align="left">
-                <Typography style={{ color: "white", width: 200 }}>
+                <Typography
+                  style={{ color: "white", width: 200, fontWeight: "700" }}
+                >
                   Name
                 </Typography>
               </TableCell>
-              <TableCell align="left">
-                <Typography style={{ color: "white" }}>Gender</Typography>
+              {/* <TableCell align="left">
+                <Typography style={{ color: "white", fontWeight: "700" }}>
+                  Gender
+                </Typography>
               </TableCell>
               <TableCell align="left">
-                <Typography style={{ color: "white", width: 100 }}>
+                <Typography
+                  style={{ color: "white", width: 100, fontWeight: "700" }}
+                >
                   Date of Birth
                 </Typography>
-              </TableCell>
+              </TableCell> */}
               <TableCell align="left">
-                <Typography style={{ color: "white" }}>Email</Typography>
-              </TableCell>
-              <TableCell align="left">
-                <Typography style={{ color: "white", width: 150 }}>
-                  Phone Number
+                <Typography style={{ color: "white", fontWeight: "700" }}>
+                  Email
                 </Typography>
               </TableCell>
+              {/* <TableCell align="left">
+                <Typography
+                  style={{ color: "white", width: 150, fontWeight: "700" }}
+                >
+                  Phone Number
+                </Typography>
+              </TableCell> */}
               <TableCell align="left">
-                <Typography style={{ color: "white", width: 100 }}>
+                <Typography
+                  style={{ color: "white", width: 100, fontWeight: "700" }}
+                >
                   Employee ID
                 </Typography>
               </TableCell>
               <TableCell align="left">
-                <Typography style={{ color: "white" }}>ID Card</Typography>
+                <Typography
+                  style={{ color: "white", width: 200, fontWeight: "700" }}
+                >
+                  Profile
+                </Typography>
+              </TableCell>
+              {/* <TableCell align="left">
+                <Typography style={{ color: "white", fontWeight: "700" }}>
+                  ID Card
+                </Typography>
               </TableCell>
               <TableCell align="left">
-                <Typography style={{ color: "white" }}>Resume</Typography>
+                <Typography style={{ color: "white", fontWeight: "700" }}>
+                  Resume
+                </Typography>
+              </TableCell> */}
+              <TableCell align="left">
+                <Typography style={{ color: "white", fontWeight: "700" }}>
+                  Status
+                </Typography>
               </TableCell>
               <TableCell align="left">
-                <Typography style={{ color: "white" }}>Status</Typography>
-              </TableCell>
-              <TableCell align="left">
-                <Typography style={{ color: "white", width: 200 }}>
+                <Typography
+                  style={{ color: "white", width: 200, fontWeight: "700" }}
+                >
                   Approve/Reject
                 </Typography>
               </TableCell>
@@ -93,13 +119,22 @@ const FetchUser = () => {
             {userDataHolder.map((val, key) => (
               <TableRow key={key}>
                 <TableCell align="left">{`${val.allData.FirstName} ${val.allData.LastName}`}</TableCell>
-                <TableCell align="left">{val.allData.Gender}</TableCell>
-                <TableCell align="left">{val.allData.DOB}</TableCell>
+                {/* <TableCell align="left">{val.allData.Gender}</TableCell>
+                <TableCell align="left">{val.allData.DOB}</TableCell> */}
                 <TableCell align="left">{val.allData.Email}</TableCell>
-                <TableCell align="left">{val.allData.Phone}</TableCell>
+                {/* <TableCell align="left">{val.allData.Phone}</TableCell> */}
                 <TableCell align="left">{val.allData.EmployeeId}</TableCell>
-                <TableCell align="left">{val.allData.IDCard}</TableCell>
-                <TableCell align="left">{val.allData.Resume}</TableCell>
+                <TableCell align="left">
+                  <Button
+                    variant="contained"
+                    style={{ backgroundColor: "brown", color: "white" }}
+                    size="small"
+                  >
+                    Click Here
+                  </Button>
+                </TableCell>
+                {/* <TableCell align="left">{val.allData.IDCard}</TableCell>
+                <TableCell align="left">{val.allData.Resume}</TableCell> */}
                 <TableCell align="left">{val.allData.Status}</TableCell>
                 <TableCell align="left">
                   <Button
