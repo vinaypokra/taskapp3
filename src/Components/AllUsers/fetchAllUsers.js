@@ -261,62 +261,63 @@ const FetchUser = () => {
                   </TableCell>
                   {/* <TableCell align="left">{val.allData.IDCard}</TableCell>
                 <TableCell align="left">{val.allData.Resume}</TableCell> */}
-                <TableCell align="left">{val.allData.Status}</TableCell>
-                <TableCell align="left">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    size="small"
-                    style={{ margin: "3px" }}
-                    onClick={() => {
-                      db.collection("emailDataBase")
-                        .doc(val.allData.Email)
-                        .set({
-                          allData: { ...val.allData, Status: "Approved" },
-                        });
-                      db.collection("taskdata")
-                        .doc(val.allData.Email)
-                        .set({
-                          allData: [
-                            {
-                              id: "",
-                              taskAddDate: "",
-                              taskName: "",
-                              taskDescription: "",
-                              taskTo: [`${val.allData.Email}`],
-                              taskDeadLine: "",
-                            },
-                          ],
-                        });
-                      setUpdate("Wait...");
-                      setTimeout(() => {
-                        setUpdate("");
-                      }, 2000);
-                    }}
-                  >
-                    Approve
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    size="small"
-                    style={{ margin: "3px" }}
-                    onClick={() => {
-                      db.collection("emailDataBase")
-                        .doc(val.allData.Email)
-                        .set({
-                          allData: { ...val.allData, Status: "Pending..." },
-                        });
-                      setUpdate("Wait...");
-                      setTimeout(() => {
-                        setUpdate("");
-                      }, 2000);
-                    }}
-                  >
-                    Reject
-                  </Button>
-                </TableCell>
-              </TableRow>
+                  <TableCell align="left">{val.allData.Status}</TableCell>
+                  <TableCell align="left">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      size="small"
+                      style={{ margin: "3px" }}
+                      onClick={() => {
+                        db.collection("emailDataBase")
+                          .doc(val.allData.Email)
+                          .set({
+                            allData: { ...val.allData, Status: "Approved" },
+                          });
+                        db.collection("taskdata")
+                          .doc(val.allData.Email)
+                          .set({
+                            allData: [
+                              {
+                                id: "",
+                                taskAddDate: "",
+                                taskName: "",
+                                taskDescription: "",
+                                taskTo: [`${val.allData.Email}`],
+                                taskDeadLine: "",
+                              },
+                            ],
+                          });
+                        setUpdate("Wait...");
+                        setTimeout(() => {
+                          setUpdate("");
+                        }, 2000);
+                      }}
+                    >
+                      Approve
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      size="small"
+                      style={{ margin: "3px" }}
+                      onClick={() => {
+                        db.collection("emailDataBase")
+                          .doc(val.allData.Email)
+                          .set({
+                            allData: { ...val.allData, Status: "Pending..." },
+                          });
+                        setUpdate("Wait...");
+                        setTimeout(() => {
+                          setUpdate("");
+                        }, 2000);
+                      }}
+                    >
+                      Reject
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              </>
             ))}
           </TableBody>
         </Table>
