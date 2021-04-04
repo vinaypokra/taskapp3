@@ -9,14 +9,13 @@ import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./aws-exports";
 import Amplify from "aws-amplify";
 import AllUsers from "./Components/AllUsers/fetchAllUsers";
-import { db } from "./base";
+
+import UserRouters from "./UserRoutes";
 Amplify.configure(awsconfig);
 
 function App() {
   const [authState, setAuthState] = React.useState();
   const [user, setUser] = React.useState();
-  const [userDataHolder, setUserdataHolder] = useState([]);
-  const [userShow, setUserShow] = userState(false);
 
   useEffect(() => {
     return onAuthUIStateChange((nextAuthState, authData) => {
@@ -25,28 +24,10 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    async function getUserFromBase() {
-      const response = await db
-        .collection("emailDataBase")
-        .get()
-        .then((querySnapshot) => querySnapshot.docs.map((doc) => doc.data()));
-      setUserdataHolder([...response]);
-    }
-    getUserFromBase();
-  }, []);
-
-  userDataHolder.map((val) => {
-    if (
-      val.allData.Email === user.attributes.email &&
-      val.allData.status === "Approved"
-    ) {
-      setUserShow(true);
-    }
-  });
   return authState === AuthState.SignedIn && user ? (
     <>
       {sessionStorage.setItem("userName", user.attributes.email)}
+
       <Routers>
         <Navigation
           signout={<AmplifySignOut />}
@@ -69,29 +50,11 @@ function App() {
             </>
           ) : (
             <>
-              {userShow ? (
-                <>
-                  <Route path="/taskpage">
-                    <TaskPage />
-                  </Route>
-                  <Route path="/dashboard">
-                    <Dashboard />
-                  </Route>
-                </>
-              ) : (
-                <>
-                  <Route path="/taskpage">
-                    <h1 style={{ color: "black" }}>
-                      Pending for verification...
-                    </h1>
-                  </Route>
-                  <Route path="/dashboard">
-                    <h1 style={{ color: "black" }}>
-                      Pending for verification...
-                    </h1>
-                  </Route>
-                </>
-              )}
+              <UserRouters
+                currentUser={user.attributes.email}
+                TaskPage={TaskPage}
+                Dashboard={Dashboard}
+              />
             </>
           )}
         </Navigation>
