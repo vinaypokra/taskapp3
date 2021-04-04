@@ -127,7 +127,7 @@ const FetchUser = () => {
                 <TableCell align="left">
                   <Button
                     variant="contained"
-                    style={{ backgroundColor: "brown", color: "white" }}
+                    style={{ backgroundColor: "#323232", color: "white" }}
                     size="small"
                   >
                     Click Here
