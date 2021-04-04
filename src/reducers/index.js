@@ -15,6 +15,8 @@ const fetchDataFromBase = (taskData = [], action) => {
 
 const userPersonalDetails = (userInfo = [], action) => {
   switch (action.type) {
+    case "FETCH_USER_DATA":
+      return action.payload;
     case "SEND_USER_INFO":
       action.payload(userInfo);
       return userInfo;

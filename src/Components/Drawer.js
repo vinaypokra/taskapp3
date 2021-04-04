@@ -142,6 +142,7 @@ export default function MainDrawer(props) {
         <List>
           {[
             ["Home", "/"],
+            ["ProFile", "/profile"],
             ["DashBoard", "/dashboard"],
             ["TaskSheet", "/taskpage"],
           ].map((text, index) => (
