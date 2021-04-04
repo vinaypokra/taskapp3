@@ -54,6 +54,26 @@ const FetchUser = () => {
   const classes = useStyles();
   return (
     <>
+      <Dialog
+        fullWidth
+        maxWidth="lg"
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="max-width-dialog-title"
+      >
+        <DialogTitle id="max-width-dialog-title">Profile</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            <Typography>Name:</Typography>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       <h1 style={{ color: "black" }}>{update}</h1>
       <TableContainer component={Paper}>
         <Table className={classes.root} aria-label="simple table">
