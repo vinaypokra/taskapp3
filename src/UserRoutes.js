@@ -63,10 +63,10 @@ const UserRoutes = ({
               <Route exact path="/profile">
                 <UserProfileInfo />
               </Route>
-              <Route path="/taskpage">
+              <Route exact path="/taskpage">
                 <TaskPage />
               </Route>
-              <Route path="/dashboard">
+              <Route exact path="/dashboard">
                 <Dashboard />
               </Route>
             </>
@@ -76,15 +76,23 @@ const UserRoutes = ({
           val.allData.Email === currentUser &&
           val.allData.Status === "Pending..." ? (
             <>
-              <Route path="/">
+              <Route exact path="/">
+                <Typography variant="h2" color="error">
+                  Verification in Proccess...
+                </Typography>
                 <Userprofileform />
               </Route>
-              <Route path="/taskpage">
+              <Route exact path="/profile">
                 <Typography variant="h2" color="error">
                   Pending for verification...
                 </Typography>
               </Route>
-              <Route path="/dashboard">
+              <Route exact path="/taskpage">
+                <Typography variant="h2" color="error">
+                  Pending for verification...
+                </Typography>
+              </Route>
+              <Route exact path="/dashboard">
                 <Typography variant="h2" color="error">
                   Pending for verification...
                 </Typography>

@@ -42,16 +42,16 @@ function App() {
               <Route exact path="/profile">
                 <UserProfileInfo />
               </Route>
-              <Route path="/taskpage">
+              <Route exact path="/taskpage">
                 <TaskPage />
               </Route>
-              <Route path="/dashboard">
+              <Route exact path="/dashboard">
                 <Dashboard />
               </Route>
-              <Route path="/allusers">
+              <Route exact path="/allusers">
                 <AllUsers />
               </Route>
-              <Route path="/alltasks">
+              <Route exact path="/alltasks">
                 <AllTasks />
               </Route>
             </>
