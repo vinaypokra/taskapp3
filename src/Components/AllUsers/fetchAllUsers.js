@@ -124,6 +124,15 @@ const FetchUser = () => {
                 <TableCell align="left">{val.allData.Email}</TableCell>
                 {/* <TableCell align="left">{val.allData.Phone}</TableCell> */}
                 <TableCell align="left">{val.allData.EmployeeId}</TableCell>
+                <TableCell align="left">
+                  <Button
+                    variant="contained"
+                    style={{ backgroundColor: "brown", color: "white" }}
+                    size="small"
+                  >
+                    Click Here
+                  </Button>
+                </TableCell>
                 {/* <TableCell align="left">{val.allData.IDCard}</TableCell>
                 <TableCell align="left">{val.allData.Resume}</TableCell> */}
                 <TableCell align="left">{val.allData.Status}</TableCell>
