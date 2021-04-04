@@ -113,6 +113,18 @@ const FetchUser = () => {
                         .set({
                           allData: { ...val.allData, Status: "Approved" },
                         });
+                      db.collection("taskdata")
+                        .doc(val.allData.Email)
+                        .set({
+                          allData: {
+                            id: "",
+                            taskAddDate: "",
+                            taskName: "",
+                            taskDescription: "",
+                            taskTo: "",
+                            taskDeadLine: "",
+                          },
+                        });
                       setUpdate("Wait...");
                       setTimeout(() => {
                         setUpdate("");

@@ -1,3 +1,4 @@
+import { Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Routers, Route } from "react-router-dom";
 import { db } from "./base";
@@ -27,6 +28,23 @@ const UserRoutes = ({ currentUser, TaskPage, Dashboard }) => {
             </Route>
             <Route path="/dashboard">
               <Dashboard />
+            </Route>
+          </>
+        ) : null
+      )}
+      {userDataHolder.map((val) =>
+        val.allData.Email === currentUser &&
+        val.allData.Status === "Pending..." ? (
+          <>
+            <Route path="/taskpage">
+              <Typography variant="h2" color="error">
+                Pending for verification...
+              </Typography>
+            </Route>
+            <Route path="/dashboard">
+              <Typography variant="h2" color="error">
+                Pending for verification...
+              </Typography>
             </Route>
           </>
         ) : null
