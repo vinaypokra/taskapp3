@@ -35,7 +35,7 @@ const Dashboard = () => {
               <CardMedia
                 style={{ height: 300, width: "100%" }}
                 image={
-                  "https://i.pinimg.com/originals/51/1e/05/511e05c83eccfef6b9fb95f3b332b214.jpg"
+                  "https://www.crushpixel.com/big-static14/preview4/grunge-dark-grey-stone-texture-1511938.jpg"
                 }
               >
                 <Grid container item justify="center">
@@ -62,7 +62,7 @@ const Dashboard = () => {
               <CardMedia
                 style={{ height: 300, width: "100%" }}
                 image={
-                  "https://i.pinimg.com/originals/51/1e/05/511e05c83eccfef6b9fb95f3b332b214.jpg"
+                  "https://www.crushpixel.com/big-static14/preview4/grunge-dark-grey-stone-texture-1511938.jpg"
                 }
               >
                 <Grid container item justify="center">
