@@ -111,7 +111,7 @@ const MultipleForms = (props) => {
       {inputfields !== null ? (
         <form className={classes.root} autoComplete="off" onSubmit={hello}>
           {inputfields.map((inputfield, index) => (
-            <Grid container direction="row" xs={4}>
+            <Grid container direction="row" xs={12}>
               <Typography color="primary">Task {index + 1}</Typography>
               <Grid xs={11} container item direction="column">
                 {formData.map((formfield) => (
