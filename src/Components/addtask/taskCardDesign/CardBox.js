@@ -30,21 +30,39 @@ export default function SimpleCard({ ...taskValue }) {
   return (
     <Card className={classes.root}>
       <CardContent>
+        {" "}
+        <Typography variant="h5" component="h2">
+          TaskName : {taskValue.taskName}
+        </Typography>
+        <br></br>
         <Typography
           className={classes.title}
           color="textSecondary"
           gutterBottom
         >
-          DeadLine : {taskValue.taskDeadLine}
-        </Typography>
-        <Typography variant="h5" component="h2">
-          TaskName : {taskValue.taskName}
+          {bull} DeadLine : {taskValue.taskDeadLine}
+        </Typography>{" "}
+        <Typography
+          className={classes.title}
+          color="textSecondary"
+          gutterBottom
+        >
+          {bull} Assigned On : {taskValue.taskAddDate}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Description : {taskValue.taskDescription}
+          {bull} Description : {taskValue.taskDescription}
         </Typography>
-        <Typography variant="body2" component="p">
-          Assigned On : {taskValue.taskAddDate}
+        <Typography className={classes.pos} color="textSecondary">
+          Assigned To :{" "}
+          {taskValue.taskTo.map((val) => (
+            <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
+            >
+              {bull} {val}
+            </Typography>
+          ))}
         </Typography>
       </CardContent>
       <CardActions>
