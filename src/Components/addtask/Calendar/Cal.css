@@ -68,6 +68,7 @@
 }
 .react-calendar__month-view__weekdays__weekday {
   padding: 0.5em;
+  color: white;
 }
 
 .react-calendar__month-view__weekNumbers {

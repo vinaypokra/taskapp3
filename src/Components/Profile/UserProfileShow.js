@@ -11,7 +11,7 @@ const Userprofileform = (props) => {
   return (
     <>
       <div style={{ color: "black" }}>
-        <h1>UserProfileSHow</h1>{" "}
+        <h1>UserProfileShow</h1>{" "}
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TaskPage from "./Components/addtask/";
-import Dashboard from "./Components/dashboard";
+import Dashboard from "./Components/dashboard/adminDashBoard";
 import { BrowserRouter as Routers, Route } from "react-router-dom";
 import Navigation from "./Components/Drawer";
 import Userprofileform from "./Components/Profile/Userprofileform";
@@ -12,6 +12,7 @@ import Amplify from "aws-amplify";
 import AllUsers from "./Components/AllUsers/fetchAllUsers";
 import AllTasks from "./Components/AllUsers/fetchAllUsersTask";
 import UserRouters from "./UserRoutes";
+import UserDashboard from "./Components/dashboard/userDashBoard";
 Amplify.configure(awsconfig);
 
 function App() {
@@ -61,7 +62,7 @@ function App() {
                 currentUser={user.attributes.email}
                 Userprofileform={Userprofileform}
                 TaskPage={TaskPage}
-                Dashboard={Dashboard}
+                Dashboard={UserDashboard}
                 UserProfileInfo={UserProfileInfo}
               />
             </>

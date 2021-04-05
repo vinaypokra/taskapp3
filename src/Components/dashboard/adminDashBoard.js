@@ -30,7 +30,7 @@ const Dashboard = () => {
 
   let history = useHistory();
   const classes = useStyles();
-  return authState === AuthState.SignedIn && user ? (
+  return (
     <>
       <h1 style={{ color: "black" }}>Dashboard Page</h1>
       <Grid item container direction="row" spacing={5}>
@@ -89,10 +89,6 @@ const Dashboard = () => {
           </CardActionArea>
         </Grid>
       </Grid>
-    </>
-  ) : (
-    <>
-      <h1 style={{ color: "black" }}>Dashboard Page</h1>
     </>
   );
 };
