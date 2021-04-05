@@ -79,17 +79,40 @@ const MultipleForms = (props) => {
     e.preventDefault();
 
     inputfields.map((value) => {
-      props.setData({
+      /*   props.setData({
         id: moment(newDate).format("YYYYMMDDHHMMSS"),
         taskAddDate: date,
         taskName: value.Name,
         taskDescription: value.Description,
         taskTo: value.Assigned.split(" "),
         taskDeadLine: value.Deadline,
-      });
+      }); */
       value.Assigned.split(" ").map((val) => {
         console.log(val);
-        props.sendDataToBase(`${val}`);
+        var tasks = [];
+        async function getUserData() {
+          var response = await db
+            .collection("taskdata")
+            .doc(`${val}`)
+            .get()
+            .then((snapshot) => snapshot.data().allData);
+
+          tasks = [
+            ...response,
+            {
+              id: moment(newDate).format("YYYYMMDDHHMMSS"),
+              taskAddDate: date,
+              taskName: value.Name,
+              taskDescription: value.Description,
+              taskTo: value.Assigned.split(" "),
+              taskDeadLine: value.Deadline,
+            },
+          ];
+          db.collection("taskdata").doc(`${val}`).set({ allData: tasks });
+        }
+        getUserData();
+
+        // props.sendDataToBase(`${val}`);
       });
 
       /* db.collection("taskdata")
@@ -183,7 +206,6 @@ const MultipleForms = (props) => {
   );
 };
 const mapStateToProps = (state) => {
-  console.log("taskData", state.taskData);
   return { taskData: state.taskData };
 };
 export default connect(mapStateToProps, { fetchData, setData, sendDataToBase })(

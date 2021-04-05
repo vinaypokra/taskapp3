@@ -83,6 +83,7 @@ const MaxWidthDialog = ({
   );
 };
 const mapStateToProps = (state) => {
+  console.log("taskData", state.taskData);
   return { taskData: state.taskData };
 };
 export default connect(mapStateToProps, { fetchData, setData, sendDataToBase })(
