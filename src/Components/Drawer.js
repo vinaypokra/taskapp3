@@ -164,7 +164,7 @@ export default function MainDrawer(props) {
               >
                 <ListItemIcon>
                   {index % 2 === 0 ? (
-                    <HomeOutlinedIcon />
+                    <HomeOutlinedIcon style={{ color: "white" }} />
                   ) : (
                     <DashboardOutlinedIcon />
                   )}

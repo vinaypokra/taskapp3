@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Card from "@material-ui/core/Card";
 import { useHistory } from "react-router-dom";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from "@material-ui/core/CardActionArea";
+import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
+
 import { makeStyles, Grid, Typography } from "@material-ui/core";
 const useStyles = makeStyles({
   media: {
@@ -16,9 +18,19 @@ const useStyles = makeStyles({
 });
 
 const Dashboard = () => {
+  const [authState, setAuthState] = React.useState();
+  const [user, setUser] = React.useState();
+
+  useEffect(() => {
+    return onAuthUIStateChange((nextAuthState, authData) => {
+      setAuthState(nextAuthState);
+      setUser(authData);
+    });
+  }, []);
+
   let history = useHistory();
   const classes = useStyles();
-  return (
+  return authState === AuthState.SignedIn && user ? (
     <>
       <h1 style={{ color: "black" }}>Dashboard Page</h1>
       <Grid item container direction="row" spacing={5}>
@@ -35,7 +47,7 @@ const Dashboard = () => {
               <CardMedia
                 style={{ height: 300, width: "100%" }}
                 image={
-                  "https://i.pinimg.com/originals/51/1e/05/511e05c83eccfef6b9fb95f3b332b214.jpg"
+                  "https://www.crushpixel.com/big-static14/preview4/grunge-dark-grey-stone-texture-1511938.jpg"
                 }
               >
                 <Grid container item justify="center">
@@ -62,7 +74,7 @@ const Dashboard = () => {
               <CardMedia
                 style={{ height: 300, width: "100%" }}
                 image={
-                  "https://i.pinimg.com/originals/51/1e/05/511e05c83eccfef6b9fb95f3b332b214.jpg"
+                  "https://www.crushpixel.com/big-static14/preview4/grunge-dark-grey-stone-texture-1511938.jpg"
                 }
               >
                 <Grid container item justify="center">
@@ -77,6 +89,10 @@ const Dashboard = () => {
           </CardActionArea>
         </Grid>
       </Grid>
+    </>
+  ) : (
+    <>
+      <h1 style={{ color: "black" }}>Dashboard Page</h1>
     </>
   );
 };
