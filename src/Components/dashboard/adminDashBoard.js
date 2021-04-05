@@ -35,7 +35,7 @@ const Dashboard = () => {
       <h1 style={{ color: "black" }}>Dashboard Page</h1>
       <Grid item container direction="row" spacing={5}>
         <Grid item xs={6}>
-          <CardActionArea onClick={() => window.open("/allusers", "_blank")}>
+          <CardActionArea onClick={() => history.push("/allusers")}>
             <Card
               className={classes.card}
               style={{
@@ -62,7 +62,7 @@ const Dashboard = () => {
           </CardActionArea>
         </Grid>
         <Grid item xs={6}>
-          <CardActionArea onClick={() => window.open("/alltasks", "_blank")}>
+          <CardActionArea onClick={() => history.push("/alltasks")}>
             <Card
               className={classes.card}
               style={{
