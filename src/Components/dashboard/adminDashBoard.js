@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
-
 import { makeStyles, Grid, Typography } from "@material-ui/core";
 const useStyles = makeStyles({
   media: {
@@ -47,7 +46,7 @@ const Dashboard = () => {
               <CardMedia
                 style={{ height: 300, width: "100%" }}
                 image={
-                  "https://www.crushpixel.com/big-static14/preview4/grunge-dark-grey-stone-texture-1511938.jpg"
+                  "/Images/images.jpg"
                 }
               >
                 <Grid container item justify="center">
@@ -74,7 +73,7 @@ const Dashboard = () => {
               <CardMedia
                 style={{ height: 300, width: "100%" }}
                 image={
-                  "https://www.crushpixel.com/big-static14/preview4/grunge-dark-grey-stone-texture-1511938.jpg"
+                  "/Images/images.jpg"
                 }
               >
                 <Grid container item justify="center">
