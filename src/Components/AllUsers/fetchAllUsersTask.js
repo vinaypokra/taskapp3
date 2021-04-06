@@ -67,10 +67,10 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Assigned On</TableCell>
-                    <TableCell>Name of Task</TableCell>
-                    <TableCell align="right">Progress</TableCell>
-                    <TableCell align="right">Deadline</TableCell>
+                    <TableCell style={{color:"white"}}>Assigned On</TableCell>
+                    <TableCell style={{color:"white"}}>Name of Task</TableCell>
+                    <TableCell align="right" style={{color:"white"}}>Progress</TableCell>
+                    <TableCell align="right" style={{color:"white"}}>Deadline</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
