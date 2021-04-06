@@ -6,6 +6,7 @@ import Navigation from "./Components/Drawer";
 import Userprofileform from "./Components/Profile/Userprofileform";
 import UserProfileInfo from "./Components/Profile/UserProfileShow";
 import { AmplifyAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
+import Background from "./bg.jpg";
 import { AuthState, onAuthUIStateChange } from "@aws-amplify/ui-components";
 import awsconfig from "./aws-exports";
 import Amplify from "aws-amplify";
@@ -71,7 +72,16 @@ function App() {
       </Routers>
     </>
   ) : (
-    <AmplifyAuthenticator />
+    <AmplifyAuthenticator
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        backgroundImage: `url(${Background})`,
+        backgroundSize: "1600px 900px",
+      }}
+    />
   );
 }
 
