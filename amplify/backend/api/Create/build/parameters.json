@@ -1,0 +1,14 @@
+{
+    "CreateAPIKey": 0,
+    "AppSyncApiName": "Create",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authtimelinesheet512d65f5",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "amplify-timelinesheet-dev-43220-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/2e42d8c01a30a793ade9581e7c2af8c97834ca5e"
+}

@@ -1,0 +1,5 @@
+type Create @model {
+  id: ID!
+  name: String!
+  description: String
+}

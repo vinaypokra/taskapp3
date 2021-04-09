@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "Create",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authtimelinesheet512d65f5",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
