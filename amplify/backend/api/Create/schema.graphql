@@ -1,5 +1,13 @@
-type Create @model {
+type EmailData @model {
   id: ID!
-  name: String!
-  description: String
+  FirstName: String!
+  LastName: String!
+  Dob: String!
+  PhoneNumber: String!
+  Gender: String!
+  EmployeeID: String!
+  Resume: String!
+  IDCard: String!
+  Email: String!
+  Status: String!
 }

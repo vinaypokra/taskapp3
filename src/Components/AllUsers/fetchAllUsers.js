@@ -13,6 +13,9 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Amplify, { API, graphqlOperation, Storage } from "aws-amplify";
+import { listEmailDatas } from "../../graphql/queries";
+import { updateEmailData } from "../../graphql/mutations";
 const useStyles = makeStyles({
   root: {
     "& .MuiTable-root": {
@@ -146,12 +149,18 @@ const FetchUser = () => {
     setOpen(false);
   };
   useEffect(() => {
+    // async function getUserFromBase() {
+    //   const response = await db
+    //     .collection("emailDataBase")
+    //     .get()
+    //     .then((querySnapshot) => querySnapshot.docs.map((doc) => doc.data()));
+    //   setUserdataHolder([...response]);
+    // }
+    // getUserFromBase();
     async function getUserFromBase() {
-      const response = await db
-        .collection("emailDataBase")
-        .get()
-        .then((querySnapshot) => querySnapshot.docs.map((doc) => doc.data()));
-      setUserdataHolder([...response]);
+      const response = await API.graphql(graphqlOperation(listEmailDatas));
+      const data = response.data.listEmailDatas.items;
+      setUserdataHolder(data);
     }
     getUserFromBase();
   }, [update]);
@@ -237,54 +246,73 @@ const FetchUser = () => {
             {userDataHolder.map((val, key) => (
               <>
                 <TableRow key={key}>
-                  <TableCell align="left">{`${val.allData.FirstName} ${val.allData.LastName}`}</TableCell>
-                  {/* <TableCell align="left">{val.allData.Gender}</TableCell>
-                <TableCell align="left">{val.allData.DOB}</TableCell> */}
-                  <TableCell align="left">{val.allData.Email}</TableCell>
-                  {/* <TableCell align="left">{val.allData.Phone}</TableCell> */}
-                  <TableCell align="left">{val.allData.EmployeeId}</TableCell>
+                  <TableCell align="left">{`${val.FirstName} ${val.LastName}`}</TableCell>
+                  {/* <TableCell align="left">{val.Gender}</TableCell>
+                <TableCell align="left">{val.DOB}</TableCell> */}
+                  <TableCell align="left">{val.Email}</TableCell>
+                  {/* <TableCell align="left">{val.Phone}</TableCell> */}
+                  <TableCell align="left">{val.EmployeeID}</TableCell>
                   <TableCell align="left">
                     <Button
                       variant="contained"
                       style={{ backgroundColor: "#323232", color: "white" }}
                       size="small"
-                      onClick={() => {
-                        handleClickOpen();
-                        value = val.allData;
-                      }}
+                      // onClick={() => {
+                      //   handleClickOpen();
+                      //   value = val.allData;
+                      // }}
                     >
                       Click Here
                     </Button>
                   </TableCell>
-                  {/* <TableCell align="left">{val.allData.IDCard}</TableCell>
-                <TableCell align="left">{val.allData.Resume}</TableCell> */}
-                  <TableCell align="left">{val.allData.Status}</TableCell>
+                  {/* <TableCell align="left">{val.IDCard}</TableCell>
+                <TableCell align="left">{val.Resume}</TableCell> */}
+                  <TableCell align="left">{val.Status}</TableCell>
                   <TableCell align="left">
                     <Button
                       variant="contained"
                       color="primary"
                       size="small"
                       style={{ margin: "3px" }}
-                      onClick={() => {
-                        db.collection("emailDataBase")
-                          .doc(val.allData.Email)
-                          .set({
-                            allData: { ...val.allData, Status: "Approved" },
-                          });
-                        db.collection("taskdata")
-                          .doc(val.allData.Email)
-                          .set({
-                            allData: [
-                              {
-                                id: "",
-                                taskAddDate: "",
-                                taskName: "",
-                                taskDescription: "",
-                                taskTo: [`${val.allData.Email}`],
-                                taskDeadLine: "",
-                              },
-                            ],
-                          });
+                      // onClick={() => {
+                      //   db.collection("emailDataBase")
+                      //     .doc(val.Email)
+                      //     .set({
+                      //       allData: { ...val.allData, Status: "Approved" },
+                      //     });
+                      //   db.collection("taskdata")
+                      //     .doc(val.Email)
+                      //     .set({
+                      //       allData: [
+                      //         {
+                      //           id: "",
+                      //           taskAddDate: "",
+                      //           taskName: "",
+                      //           taskDescription: "",
+                      //           taskTo: [`${val.Email}`],
+                      //           taskDeadLine: "",
+                      //         },
+                      //       ],
+                      //     });
+                      //   setUpdate("Wait...");
+                      //   setTimeout(() => {
+                      //     setUpdate("");
+                      //   }, 2000);
+                      // }}
+                      onClick={async () => {
+                        const st = userDataHolder[key];
+                        st.Status = "Approved";
+                        delete st.createdAt;
+                        delete st.updatedAt;
+                        const update = await API.graphql(
+                          graphqlOperation(updateEmailData, {
+                            input: st,
+                          })
+                        );
+                        const NewList = [...st];
+                        NewList[key] = update.data.updateEmailData;
+                        setUserdataHolder(NewList);
+
                         setUpdate("Wait...");
                         setTimeout(() => {
                           setUpdate("");
@@ -300,7 +328,7 @@ const FetchUser = () => {
                       style={{ margin: "3px" }}
                       onClick={() => {
                         db.collection("emailDataBase")
-                          .doc(val.allData.Email)
+                          .doc(val.Email)
                           .set({
                             allData: { ...val.allData, Status: "Pending..." },
                           });

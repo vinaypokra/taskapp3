@@ -9,10 +9,12 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
-import { Storage } from "aws-amplify";
 import { AmplifyS3Image } from "@aws-amplify/ui-react";
 import { connect } from "react-redux";
 import { userProfileInfo, setUserProfileInfo } from "../../actions";
+import { createEmailData } from "../../graphql/mutations";
+import Amplify, { API, graphqlOperation, Storage } from "aws-amplify";
+import { v4 as uuid } from "uuid";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,25 +69,49 @@ const Userprofileform = (props) => {
     Dob: "",
     PhoneNumber: "",
     Gender: "",
-    EmployeeId: "",
+    EmployeeID: "",
     Resume: "",
     ID: "",
   });
 
-  const AddData = () => {
-    props.setUserProfileInfo({
-      FirstName: userdata.FirstName,
-      LastName: userdata.LastName,
-      DOB: userdata.Dob,
-      Phone: userdata.PhoneNumber,
-      Gender: userdata.Gender,
-      EmployeeId: userdata.EmployeeId,
-      Resume: userdata.Resume,
-      IDCard: userdata.ID,
+  const AddData = async () => {
+    const {
+      FirstName,
+      LastName,
+      Dob,
+      PhoneNumber,
+      Gender,
+      EmployeeID,
+      Resume,
+      ID,
+    } = userdata;
+    // props.setUserProfileInfo({
+    //   FirstName: userdata.FirstName,
+    //   LastName: userdata.LastName,
+    //   DOB: userdata.Dob,
+    //   Phone: userdata.PhoneNumber,
+    //   Gender: userdata.Gender,
+    //   EmployeeID: userdata.EmployeeID,
+    //   Resume: userdata.Resume,
+    //   IDCard: userdata.ID,
+    //   Email: sessionStorage.getItem("userName"),
+    //   Status: "Pending...",
+    // });
+    // props.userProfileInfo(sessionStorage.getItem("userName"));
+    const storeData = {
+      id: uuid(),
+      FirstName,
+      LastName,
+      Dob,
+      PhoneNumber,
+      Gender,
+      EmployeeID,
+      Resume,
+      IDCard: ID,
       Email: sessionStorage.getItem("userName"),
-      Status: "Pending...",
-    });
-    props.userProfileInfo(sessionStorage.getItem("userName"));
+      Status: "Pending",
+    };
+    await API.graphql(graphqlOperation(createEmailData, { input: storeData }));
   };
 
   return (
@@ -228,9 +254,9 @@ const Userprofileform = (props) => {
                 name="Employee ID"
                 autoComplete="Employee ID"
                 // onChange={onChange}
-                value={userdata.EmployeeId}
+                value={userdata.EmployeeID}
                 onChange={(e) => {
-                  setUserdata({ ...userdata, EmployeeId: e.target.value });
+                  setUserdata({ ...userdata, EmployeeID: e.target.value });
                 }}
               />
             </Grid>

@@ -1,7 +1,18 @@
-type Create {
+type EmailData {
   id: ID!
-  name: String!
-  description: String
+  FirstName: String!
+  LastName: String!
+  Dob: String!
+  PhoneNumber: String!
+  Gender: String!
+  EmployeeID: String!
+  Resume: String!
+  IDCard: String!
+  Email: String!
+  Status: String!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
 }
@@ -11,9 +22,10 @@ enum ModelSortDirection {
   DESC
 }
 
-type ModelCreateConnection {
-  items: [Create]
+type ModelEmailDataConnection {
+  items: [EmailData]
   nextToken: String
+  startedAt: AWSTimestamp
 }
 
 input ModelStringInput {
@@ -89,13 +101,21 @@ input ModelSizeInput {
   between: [Int]
 }
 
-input ModelCreateFilterInput {
+input ModelEmailDataFilterInput {
   id: ModelIDInput
-  name: ModelStringInput
-  description: ModelStringInput
-  and: [ModelCreateFilterInput]
-  or: [ModelCreateFilterInput]
-  not: ModelCreateFilterInput
+  FirstName: ModelStringInput
+  LastName: ModelStringInput
+  Dob: ModelStringInput
+  PhoneNumber: ModelStringInput
+  Gender: ModelStringInput
+  EmployeeID: ModelStringInput
+  Resume: ModelStringInput
+  IDCard: ModelStringInput
+  Email: ModelStringInput
+  Status: ModelStringInput
+  and: [ModelEmailDataFilterInput]
+  or: [ModelEmailDataFilterInput]
+  not: ModelEmailDataFilterInput
 }
 
 enum ModelAttributeTypes {
@@ -112,42 +132,70 @@ enum ModelAttributeTypes {
 }
 
 type Query {
-  getCreate(id: ID!): Create
-  listCreates(filter: ModelCreateFilterInput, limit: Int, nextToken: String): ModelCreateConnection
+  syncEmailData(filter: ModelEmailDataFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelEmailDataConnection
+  getEmailData(id: ID!): EmailData
+  listEmailDatas(filter: ModelEmailDataFilterInput, limit: Int, nextToken: String): ModelEmailDataConnection
 }
 
-input CreateCreateInput {
+input CreateEmailDataInput {
   id: ID
-  name: String!
-  description: String
+  FirstName: String!
+  LastName: String!
+  Dob: String!
+  PhoneNumber: String!
+  Gender: String!
+  EmployeeID: String!
+  Resume: String!
+  IDCard: String!
+  Email: String!
+  Status: String!
+  _version: Int
 }
 
-input UpdateCreateInput {
+input UpdateEmailDataInput {
   id: ID!
-  name: String
-  description: String
+  FirstName: String
+  LastName: String
+  Dob: String
+  PhoneNumber: String
+  Gender: String
+  EmployeeID: String
+  Resume: String
+  IDCard: String
+  Email: String
+  Status: String
+  _version: Int
 }
 
-input DeleteCreateInput {
+input DeleteEmailDataInput {
   id: ID
+  _version: Int
 }
 
 type Mutation {
-  createCreate(input: CreateCreateInput!, condition: ModelCreateConditionInput): Create
-  updateCreate(input: UpdateCreateInput!, condition: ModelCreateConditionInput): Create
-  deleteCreate(input: DeleteCreateInput!, condition: ModelCreateConditionInput): Create
+  createEmailData(input: CreateEmailDataInput!, condition: ModelEmailDataConditionInput): EmailData
+  updateEmailData(input: UpdateEmailDataInput!, condition: ModelEmailDataConditionInput): EmailData
+  deleteEmailData(input: DeleteEmailDataInput!, condition: ModelEmailDataConditionInput): EmailData
 }
 
-input ModelCreateConditionInput {
-  name: ModelStringInput
-  description: ModelStringInput
-  and: [ModelCreateConditionInput]
-  or: [ModelCreateConditionInput]
-  not: ModelCreateConditionInput
+input ModelEmailDataConditionInput {
+  FirstName: ModelStringInput
+  LastName: ModelStringInput
+  Dob: ModelStringInput
+  PhoneNumber: ModelStringInput
+  Gender: ModelStringInput
+  EmployeeID: ModelStringInput
+  Resume: ModelStringInput
+  IDCard: ModelStringInput
+  Email: ModelStringInput
+  Status: ModelStringInput
+  and: [ModelEmailDataConditionInput]
+  or: [ModelEmailDataConditionInput]
+  not: ModelEmailDataConditionInput
 }
 
 type Subscription {
-  onCreateCreate: Create @aws_subscribe(mutations: ["createCreate"])
-  onUpdateCreate: Create @aws_subscribe(mutations: ["updateCreate"])
-  onDeleteCreate: Create @aws_subscribe(mutations: ["deleteCreate"])
+  onCreateEmailData: EmailData @aws_subscribe(mutations: ["createEmailData"])
+  onUpdateEmailData: EmailData @aws_subscribe(mutations: ["updateEmailData"])
+  onDeleteEmailData: EmailData @aws_subscribe(mutations: ["deleteEmailData"])
 }

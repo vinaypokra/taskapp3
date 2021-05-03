@@ -86,7 +86,7 @@
         }
     },
     "Resources": {
-        "CreateTable": {
+        "EmailDataTable": {
             "Type": "AWS::DynamoDB::Table",
             "Properties": {
                 "TableName": {
@@ -96,7 +96,7 @@
                             "Fn::Join": [
                                 "-",
                                 [
-                                    "Create",
+                                    "EmailData",
                                     {
                                         "Ref": "GetAttGraphQLAPIApiId"
                                     },
@@ -110,7 +110,7 @@
                             "Fn::Join": [
                                 "-",
                                 [
-                                    "Create",
+                                    "EmailData",
                                     {
                                         "Ref": "GetAttGraphQLAPIApiId"
                                     }
@@ -178,11 +178,15 @@
                             "Ref": "AWS::NoValue"
                         }
                     ]
+                },
+                "TimeToLiveSpecification": {
+                    "AttributeName": "_ttl",
+                    "Enabled": true
                 }
             },
             "DeletionPolicy": "Delete"
         },
-        "CreateIAMRole": {
+        "EmailDataIAMRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
                 "RoleName": {
@@ -192,7 +196,7 @@
                             "Fn::Join": [
                                 "-",
                                 [
-                                    "Create664636",
+                                    "EmailDataba962b",
                                     "role",
                                     {
                                         "Ref": "GetAttGraphQLAPIApiId"
@@ -207,7 +211,7 @@
                             "Fn::Join": [
                                 "-",
                                 [
-                                    "Createc3b834",
+                                    "EmailDatac167b4",
                                     "role",
                                     {
                                         "Ref": "GetAttGraphQLAPIApiId"
@@ -259,7 +263,7 @@
                                                                 "Fn::Join": [
                                                                     "-",
                                                                     [
-                                                                        "Create",
+                                                                        "EmailData",
                                                                         {
                                                                             "Ref": "GetAttGraphQLAPIApiId"
                                                                         },
@@ -273,7 +277,7 @@
                                                                 "Fn::Join": [
                                                                     "-",
                                                                     [
-                                                                        "Create",
+                                                                        "EmailData",
                                                                         {
                                                                             "Ref": "GetAttGraphQLAPIApiId"
                                                                         }
@@ -296,7 +300,7 @@
                                                                 "Fn::Join": [
                                                                     "-",
                                                                     [
-                                                                        "Create",
+                                                                        "EmailData",
                                                                         {
                                                                             "Ref": "GetAttGraphQLAPIApiId"
                                                                         },
@@ -310,7 +314,81 @@
                                                                 "Fn::Join": [
                                                                     "-",
                                                                     [
-                                                                        "Create",
+                                                                        "EmailData",
+                                                                        {
+                                                                            "Ref": "GetAttGraphQLAPIApiId"
+                                                                        }
+                                                                    ]
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Fn::Sub": [
+                                                "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+                                                {
+                                                    "tablename": {
+                                                        "Fn::If": [
+                                                            "HasEnvironmentParameter",
+                                                            {
+                                                                "Fn::Join": [
+                                                                    "-",
+                                                                    [
+                                                                        "AmplifyDataStore",
+                                                                        {
+                                                                            "Ref": "GetAttGraphQLAPIApiId"
+                                                                        },
+                                                                        {
+                                                                            "Ref": "env"
+                                                                        }
+                                                                    ]
+                                                                ]
+                                                            },
+                                                            {
+                                                                "Fn::Join": [
+                                                                    "-",
+                                                                    [
+                                                                        "AmplifyDataStore",
+                                                                        {
+                                                                            "Ref": "GetAttGraphQLAPIApiId"
+                                                                        }
+                                                                    ]
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Fn::Sub": [
+                                                "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*",
+                                                {
+                                                    "tablename": {
+                                                        "Fn::If": [
+                                                            "HasEnvironmentParameter",
+                                                            {
+                                                                "Fn::Join": [
+                                                                    "-",
+                                                                    [
+                                                                        "AmplifyDataStore",
+                                                                        {
+                                                                            "Ref": "GetAttGraphQLAPIApiId"
+                                                                        },
+                                                                        {
+                                                                            "Ref": "env"
+                                                                        }
+                                                                    ]
+                                                                ]
+                                                            },
+                                                            {
+                                                                "Fn::Join": [
+                                                                    "-",
+                                                                    [
+                                                                        "AmplifyDataStore",
                                                                         {
                                                                             "Ref": "GetAttGraphQLAPIApiId"
                                                                         }
@@ -330,17 +408,17 @@
                 ]
             }
         },
-        "CreateDataSource": {
+        "EmailDataDataSource": {
             "Type": "AWS::AppSync::DataSource",
             "Properties": {
                 "ApiId": {
                     "Ref": "GetAttGraphQLAPIApiId"
                 },
-                "Name": "CreateTable",
+                "Name": "EmailDataTable",
                 "Type": "AMAZON_DYNAMODB",
                 "ServiceRoleArn": {
                     "Fn::GetAtt": [
-                        "CreateIAMRole",
+                        "EmailDataIAMRole",
                         "Arn"
                     ]
                 },
@@ -355,7 +433,7 @@
                                 "Fn::Join": [
                                     "-",
                                     [
-                                        "Create",
+                                        "EmailData",
                                         {
                                             "Ref": "GetAttGraphQLAPIApiId"
                                         },
@@ -369,7 +447,7 @@
                                 "Fn::Join": [
                                     "-",
                                     [
-                                        "Create",
+                                        "EmailData",
                                         {
                                             "Ref": "GetAttGraphQLAPIApiId"
                                         }
@@ -377,14 +455,49 @@
                                 ]
                             }
                         ]
-                    }
+                    },
+                    "DeltaSyncConfig": {
+                        "DeltaSyncTableName": {
+                            "Fn::If": [
+                                "HasEnvironmentParameter",
+                                {
+                                    "Fn::Join": [
+                                        "-",
+                                        [
+                                            "AmplifyDataStore",
+                                            {
+                                                "Ref": "GetAttGraphQLAPIApiId"
+                                            },
+                                            {
+                                                "Ref": "env"
+                                            }
+                                        ]
+                                    ]
+                                },
+                                {
+                                    "Fn::Join": [
+                                        "-",
+                                        [
+                                            "AmplifyDataStore",
+                                            {
+                                                "Ref": "GetAttGraphQLAPIApiId"
+                                            }
+                                        ]
+                                    ]
+                                }
+                            ]
+                        },
+                        "DeltaSyncTableTTL": 30,
+                        "BaseTableTTL": 43200
+                    },
+                    "Versioned": true
                 }
             },
             "DependsOn": [
-                "CreateIAMRole"
+                "EmailDataIAMRole"
             ]
         },
-        "GetCreateResolver": {
+        "SyncEmailDataResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
@@ -392,11 +505,11 @@
                 },
                 "DataSourceName": {
                     "Fn::GetAtt": [
-                        "CreateDataSource",
+                        "EmailDataDataSource",
                         "Name"
                     ]
                 },
-                "FieldName": "getCreate",
+                "FieldName": "syncEmailData",
                 "TypeName": "Query",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
@@ -413,7 +526,7 @@
                                     ".",
                                     [
                                         "Query",
-                                        "getCreate",
+                                        "syncEmailData",
                                         "req",
                                         "vtl"
                                     ]
@@ -437,7 +550,7 @@
                                     ".",
                                     [
                                         "Query",
-                                        "getCreate",
+                                        "syncEmailData",
                                         "res",
                                         "vtl"
                                     ]
@@ -448,7 +561,7 @@
                 }
             }
         },
-        "ListCreateResolver": {
+        "GetEmailDataResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
@@ -456,11 +569,11 @@
                 },
                 "DataSourceName": {
                     "Fn::GetAtt": [
-                        "CreateDataSource",
+                        "EmailDataDataSource",
                         "Name"
                     ]
                 },
-                "FieldName": "listCreates",
+                "FieldName": "getEmailData",
                 "TypeName": "Query",
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
@@ -477,7 +590,7 @@
                                     ".",
                                     [
                                         "Query",
-                                        "listCreates",
+                                        "getEmailData",
                                         "req",
                                         "vtl"
                                     ]
@@ -501,7 +614,7 @@
                                     ".",
                                     [
                                         "Query",
-                                        "listCreates",
+                                        "getEmailData",
                                         "res",
                                         "vtl"
                                     ]
@@ -512,7 +625,7 @@
                 }
             }
         },
-        "CreateCreateResolver": {
+        "ListEmailDataResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
@@ -520,12 +633,80 @@
                 },
                 "DataSourceName": {
                     "Fn::GetAtt": [
-                        "CreateDataSource",
+                        "EmailDataDataSource",
                         "Name"
                     ]
                 },
-                "FieldName": "createCreate",
+                "FieldName": "listEmailDatas",
+                "TypeName": "Query",
+                "RequestMappingTemplateS3Location": {
+                    "Fn::Sub": [
+                        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
+                        {
+                            "S3DeploymentBucket": {
+                                "Ref": "S3DeploymentBucket"
+                            },
+                            "S3DeploymentRootKey": {
+                                "Ref": "S3DeploymentRootKey"
+                            },
+                            "ResolverFileName": {
+                                "Fn::Join": [
+                                    ".",
+                                    [
+                                        "Query",
+                                        "listEmailDatas",
+                                        "req",
+                                        "vtl"
+                                    ]
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "ResponseMappingTemplateS3Location": {
+                    "Fn::Sub": [
+                        "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
+                        {
+                            "S3DeploymentBucket": {
+                                "Ref": "S3DeploymentBucket"
+                            },
+                            "S3DeploymentRootKey": {
+                                "Ref": "S3DeploymentRootKey"
+                            },
+                            "ResolverFileName": {
+                                "Fn::Join": [
+                                    ".",
+                                    [
+                                        "Query",
+                                        "listEmailDatas",
+                                        "res",
+                                        "vtl"
+                                    ]
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "CreateEmailDataResolver": {
+            "Type": "AWS::AppSync::Resolver",
+            "Properties": {
+                "ApiId": {
+                    "Ref": "GetAttGraphQLAPIApiId"
+                },
+                "DataSourceName": {
+                    "Fn::GetAtt": [
+                        "EmailDataDataSource",
+                        "Name"
+                    ]
+                },
+                "FieldName": "createEmailData",
                 "TypeName": "Mutation",
+                "SyncConfig": {
+                    "ConflictDetection": "VERSION",
+                    "ConflictHandler": "AUTOMERGE"
+                },
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
                         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
@@ -541,7 +722,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "createCreate",
+                                        "createEmailData",
                                         "req",
                                         "vtl"
                                     ]
@@ -565,7 +746,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "createCreate",
+                                        "createEmailData",
                                         "res",
                                         "vtl"
                                     ]
@@ -576,7 +757,7 @@
                 }
             }
         },
-        "UpdateCreateResolver": {
+        "UpdateEmailDataResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
@@ -584,12 +765,16 @@
                 },
                 "DataSourceName": {
                     "Fn::GetAtt": [
-                        "CreateDataSource",
+                        "EmailDataDataSource",
                         "Name"
                     ]
                 },
-                "FieldName": "updateCreate",
+                "FieldName": "updateEmailData",
                 "TypeName": "Mutation",
+                "SyncConfig": {
+                    "ConflictDetection": "VERSION",
+                    "ConflictHandler": "AUTOMERGE"
+                },
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
                         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
@@ -605,7 +790,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "updateCreate",
+                                        "updateEmailData",
                                         "req",
                                         "vtl"
                                     ]
@@ -629,7 +814,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "updateCreate",
+                                        "updateEmailData",
                                         "res",
                                         "vtl"
                                     ]
@@ -640,7 +825,7 @@
                 }
             }
         },
-        "DeleteCreateResolver": {
+        "DeleteEmailDataResolver": {
             "Type": "AWS::AppSync::Resolver",
             "Properties": {
                 "ApiId": {
@@ -648,12 +833,16 @@
                 },
                 "DataSourceName": {
                     "Fn::GetAtt": [
-                        "CreateDataSource",
+                        "EmailDataDataSource",
                         "Name"
                     ]
                 },
-                "FieldName": "deleteCreate",
+                "FieldName": "deleteEmailData",
                 "TypeName": "Mutation",
+                "SyncConfig": {
+                    "ConflictDetection": "VERSION",
+                    "ConflictHandler": "AUTOMERGE"
+                },
                 "RequestMappingTemplateS3Location": {
                     "Fn::Sub": [
                         "s3://${S3DeploymentBucket}/${S3DeploymentRootKey}/resolvers/${ResolverFileName}",
@@ -669,7 +858,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "deleteCreate",
+                                        "deleteEmailData",
                                         "req",
                                         "vtl"
                                     ]
@@ -693,7 +882,7 @@
                                     ".",
                                     [
                                         "Mutation",
-                                        "deleteCreate",
+                                        "deleteEmailData",
                                         "res",
                                         "vtl"
                                     ]
@@ -706,11 +895,11 @@
         }
     },
     "Outputs": {
-        "GetAttCreateTableStreamArn": {
+        "GetAttEmailDataTableStreamArn": {
             "Description": "Your DynamoDB table StreamArn.",
             "Value": {
                 "Fn::GetAtt": [
-                    "CreateTable",
+                    "EmailDataTable",
                     "StreamArn"
                 ]
             },
@@ -723,18 +912,18 @@
                                 "Ref": "AppSyncApiId"
                             },
                             "GetAtt",
-                            "CreateTable",
+                            "EmailDataTable",
                             "StreamArn"
                         ]
                     ]
                 }
             }
         },
-        "GetAttCreateDataSourceName": {
+        "GetAttEmailDataDataSourceName": {
             "Description": "Your model DataSource name.",
             "Value": {
                 "Fn::GetAtt": [
-                    "CreateDataSource",
+                    "EmailDataDataSource",
                     "Name"
                 ]
             },
@@ -747,17 +936,17 @@
                                 "Ref": "AppSyncApiId"
                             },
                             "GetAtt",
-                            "CreateDataSource",
+                            "EmailDataDataSource",
                             "Name"
                         ]
                     ]
                 }
             }
         },
-        "GetAttCreateTableName": {
+        "GetAttEmailDataTableName": {
             "Description": "Your DynamoDB table name.",
             "Value": {
-                "Ref": "CreateTable"
+                "Ref": "EmailDataTable"
             },
             "Export": {
                 "Name": {
@@ -768,7 +957,7 @@
                                 "Ref": "AppSyncApiId"
                             },
                             "GetAtt",
-                            "CreateTable",
+                            "EmailDataTable",
                             "Name"
                         ]
                     ]

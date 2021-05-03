@@ -1,43 +1,76 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createCreate = /* GraphQL */ `
-  mutation CreateCreate(
-    $input: CreateCreateInput!
-    $condition: ModelCreateConditionInput
+export const createEmailData = /* GraphQL */ `
+  mutation CreateEmailData(
+    $input: CreateEmailDataInput!
+    $condition: ModelEmailDataConditionInput
   ) {
-    createCreate(input: $input, condition: $condition) {
+    createEmailData(input: $input, condition: $condition) {
       id
-      name
-      description
+      FirstName
+      LastName
+      Dob
+      PhoneNumber
+      Gender
+      EmployeeID
+      Resume
+      IDCard
+      Email
+      Status
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
   }
 `;
-export const updateCreate = /* GraphQL */ `
-  mutation UpdateCreate(
-    $input: UpdateCreateInput!
-    $condition: ModelCreateConditionInput
+export const updateEmailData = /* GraphQL */ `
+  mutation UpdateEmailData(
+    $input: UpdateEmailDataInput!
+    $condition: ModelEmailDataConditionInput
   ) {
-    updateCreate(input: $input, condition: $condition) {
+    updateEmailData(input: $input, condition: $condition) {
       id
-      name
-      description
+      FirstName
+      LastName
+      Dob
+      PhoneNumber
+      Gender
+      EmployeeID
+      Resume
+      IDCard
+      Email
+      Status
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteCreate = /* GraphQL */ `
-  mutation DeleteCreate(
-    $input: DeleteCreateInput!
-    $condition: ModelCreateConditionInput
+export const deleteEmailData = /* GraphQL */ `
+  mutation DeleteEmailData(
+    $input: DeleteEmailDataInput!
+    $condition: ModelEmailDataConditionInput
   ) {
-    deleteCreate(input: $input, condition: $condition) {
+    deleteEmailData(input: $input, condition: $condition) {
       id
-      name
-      description
+      FirstName
+      LastName
+      Dob
+      PhoneNumber
+      Gender
+      EmployeeID
+      Resume
+      IDCard
+      Email
+      Status
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }

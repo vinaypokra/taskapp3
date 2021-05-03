@@ -1,34 +1,67 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateCreate = /* GraphQL */ `
-  subscription OnCreateCreate {
-    onCreateCreate {
+export const onCreateEmailData = /* GraphQL */ `
+  subscription OnCreateEmailData {
+    onCreateEmailData {
       id
-      name
-      description
+      FirstName
+      LastName
+      Dob
+      PhoneNumber
+      Gender
+      EmployeeID
+      Resume
+      IDCard
+      Email
+      Status
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
   }
 `;
-export const onUpdateCreate = /* GraphQL */ `
-  subscription OnUpdateCreate {
-    onUpdateCreate {
+export const onUpdateEmailData = /* GraphQL */ `
+  subscription OnUpdateEmailData {
+    onUpdateEmailData {
       id
-      name
-      description
+      FirstName
+      LastName
+      Dob
+      PhoneNumber
+      Gender
+      EmployeeID
+      Resume
+      IDCard
+      Email
+      Status
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
   }
 `;
-export const onDeleteCreate = /* GraphQL */ `
-  subscription OnDeleteCreate {
-    onDeleteCreate {
+export const onDeleteEmailData = /* GraphQL */ `
+  subscription OnDeleteEmailData {
+    onDeleteEmailData {
       id
-      name
-      description
+      FirstName
+      LastName
+      Dob
+      PhoneNumber
+      Gender
+      EmployeeID
+      Resume
+      IDCard
+      Email
+      Status
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
